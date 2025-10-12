@@ -1,0 +1,170 @@
+"use client";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import Image from "next/image";
+import { Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { Input } from "@/components/ui/input";
+import Link from "next/link";
+
+const LoginPage = () => {
+  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
+  const onSubmit = async (data) => {
+    try {
+      setIsLoading(true);
+      setError("");
+
+      const result = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+      });
+
+      if (result?.error) {
+        const errorMsg = result.error || "Login failed";
+        toast.error(errorMsg);
+        setError(errorMsg);
+      } else if (result?.ok) {
+        toast.success("Login successful! Welcome back.");
+        router.push("/dashboard");
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      const errorMessage = "An error occurred during login";
+      toast.error(errorMessage);
+      setError(errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#021334] via-[#012a61] to-[#275a91]">
+      <div className="w-full max-w-md p-8 bg-white rounded-xl shadow-2xl">
+        {/* Logo and Header */}
+        <div className="flex flex-col items-center mb-8">
+          <Image
+            src="/Advitiya Image.jpg"
+            alt="Advitiya Logo"
+            width={80}
+            height={80}
+            className="rounded-full mb-4"
+          />
+          <h2 className="text-3xl font-bold text-[#021334]">Welcome Back</h2>
+          <p className="text-gray-600 mt-2">Sign in to your account</p>
+        </div>
+
+        {/* Login Form */}
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <div>
+            <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+              <Mail className="w-4 h-4 text-[#275a91]" />
+              Email Address
+            </label>
+            <Input
+              type="email"
+              placeholder="Enter your email address"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                  message: "Please enter a valid email address",
+                },
+              })}
+            />
+            {errors.email && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.email.message}
+              </p>
+            )}
+          </div>
+
+          <div>
+            <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
+              <Lock className="w-4 h-4 text-[#275a91]" />
+              Password
+            </label>
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-[#275a91] focus:border-[#275a91] transition-colors duration-200 text-black"
+                {...register("password", {
+                  required: "Password is required",
+                })}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#275a91]"
+              >
+                {showPassword ? (
+                  <EyeOff className="w-5 h-5" />
+                ) : (
+                  <Eye className="w-5 h-5" />
+                )}
+              </button>
+            </div>
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
+          </div>
+
+          {/* Forgot Password Link */}
+          <div className="flex justify-end">
+            <Link 
+              href="/forgot-password" 
+              className="text-sm text-[#275a91] hover:text-[#021334] transition-colors duration-200"
+            >
+              Forgot your password?
+            </Link>
+          </div>
+
+          {/* Display general error */}
+          {error && (
+            <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
+              <p className="text-red-600 text-sm">{error}</p>
+            </div>
+          )}
+
+          <button
+            type="submit"
+            disabled={isLoading}
+            className="w-full py-3 px-4 bg-[#275a91] text-white font-semibold rounded-lg hover:bg-[#021334] focus:ring-4 focus:ring-[#275a91]/50 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isLoading ? "Signing In..." : "Sign In"}
+          </button>
+        </form>
+
+        {/* Sign Up Link */}
+        <div className="mt-6 text-center">
+          <p className="text-gray-600 text-sm">
+            Don't have an account?{" "}
+            <Link 
+              href="/registration" 
+              className="text-[#275a91] hover:text-[#021334] font-semibold transition-colors duration-200"
+            >
+              Create Account
+            </Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default LoginPage;

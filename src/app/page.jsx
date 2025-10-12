@@ -1,0 +1,40 @@
+"use client";
+
+import dynamic from "next/dynamic";
+import NavigationBar from "@/components/NavigationBar";
+import Hero from "@/components/Hero";
+import EventsSection from "@/components/EventsSection";
+import AboutSection from "@/components/AboutSection";
+import Footer from "@/components/Footer";
+import Teaser from "@/components/Teaser";
+import Highlights from "@/components/Highlights";
+
+// Dynamically import ParticleBackground to avoid SSR issues
+const ParticleBackground = dynamic(
+  () => import("@/components/ParticleBackground"),
+  {
+    ssr: false,
+  }
+);
+
+export default function Home() {
+  return (
+    <main className="relative min-h-screen">
+      {/* Dynamic Background */}
+      <ParticleBackground />
+
+      {/* Navigation */}
+      <NavigationBar />
+
+      {/* Main Content */}
+      <div className="relative z-10">
+        <Hero />
+        <AboutSection />
+        <Teaser />
+        <EventsSection />
+        <Highlights />
+        <Footer />
+      </div>
+    </main>
+  );
+}
