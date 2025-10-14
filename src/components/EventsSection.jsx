@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useId, useRef } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Code,
   Music,
@@ -14,7 +14,6 @@ import {
   Award,
   MapPin,
 } from "lucide-react";
-import { useOutsideClick } from "@/hooks/use-outside-click";
 import Image from "next/image";
 
 const eventCategories = [
@@ -428,6 +427,26 @@ const CloseIcon = () => (
   </motion.svg>
 );
 
+// Simple outside click hook
+function useOutsideClick(ref, handler) {
+  useEffect(() => {
+    const listener = (event) => {
+      if (!ref.current || ref.current.contains(event.target)) {
+        return;
+      }
+      handler(event);
+    };
+
+    document.addEventListener("mousedown", listener);
+    document.addEventListener("touchstart", listener);
+
+    return () => {
+      document.removeEventListener("mousedown", listener);
+      document.removeEventListener("touchstart", listener);
+    };
+  }, [ref, handler]);
+}
+
 export default function EventsSection() {
   const [active, setActive] = useState(null);
   const ref = useRef(null);
@@ -453,7 +472,7 @@ export default function EventsSection() {
   useOutsideClick(ref, () => setActive(null));
 
   return (
-    <section className="w-full bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 py-12 sm:py-16 lg:py-20">
+    <section id="events" className="w-full py-12 sm:py-16 lg:py-20 relative">
       <div className="flex flex-col items-center justify-center w-full px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-7xl mx-auto space-y-12 sm:space-y-16">
           {/* Modal overlay */}
@@ -484,13 +503,11 @@ export default function EventsSection() {
                   <CloseIcon />
                 </motion.button>
 
-                {/* Modal card: flex column, max-h so we can scroll internal content */}
                 <motion.div
                   layoutId={`card-${active.name}-${id}`}
                   ref={ref}
                   className="w-full max-w-[700px] max-h-[90vh] flex flex-col bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden m-4 shadow-lg"
                 >
-                  {/* Image: take fixed space */}
                   <motion.div
                     layoutId={`image-${active.name}-${id}`}
                     className="flex-none"
@@ -505,36 +522,32 @@ export default function EventsSection() {
                     />
                   </motion.div>
 
-                  {/* Content container: flex-1 and scrollable */}
                   <div className="p-6 flex-1 flex flex-col min-h-0">
-                    {/* Title + short desc */}
-                    <div className="text-center mb-2">
+                    <div className="text-center mb-4">
                       <motion.h3
                         layoutId={`title-${active.name}-${id}`}
-                        className="font-bold text-neutral-700 dark:text-neutral-200 text-2xl mb-1"
+                        className="font-bold text-neutral-700 dark:text-neutral-200 text-2xl mb-2"
                       >
                         {active.name}
                       </motion.h3>
                       <motion.p
                         layoutId={`description-${active.description}-${id}`}
-                        className="text-neutral-600 dark:text-neutral-400 mx-auto max-w-xl text-center"
+                        className="text-neutral-600 dark:text-neutral-400"
                       >
                         {active.description}
                       </motion.p>
                     </div>
 
-                    {/* CTA */}
-                    <div className="text-center mb-4">
+                    <div className="text-center mb-4 px-4">
                       <motion.a
                         layoutId={`button-${active.name}-${id}`}
                         href={active.ctaLink}
-                        className={`inline-block px-6 py-3 text-sm rounded-full font-bold bg-gradient-to-r ${active.color} text-white hover:shadow-lg transition-all`}
+                        className={`inline-block px-8 py-3 text-sm rounded-full font-bold bg-gradient-to-r ${active.color} text-white hover:shadow-lg transition-all`}
                       >
                         {active.ctaText}
                       </motion.a>
                     </div>
 
-                    {/* Full details (scrolls if too tall) */}
                     <motion.div
                       layout
                       initial={{ opacity: 0 }}
@@ -552,18 +565,18 @@ export default function EventsSection() {
             ) : null}
           </AnimatePresence>
 
-          {/* Header (forced centered) */}
+          {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: -40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="w-full flex flex-col items-center text-center"
           >
-            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-6 sm:mb-8">
+            <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-6 sm:mb-8 drop-shadow-[0_0_30px_rgba(168,85,247,0.8)]">
               Events
             </h1>
 
-            <p className="text-lg sm:text-xl lg:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed px-4 text-center">
+            <p className="text-lg sm:text-xl lg:text-2xl text-cyan-100 max-w-4xl mx-auto leading-relaxed px-4 text-center drop-shadow-[0_2px_10px_rgba(0,0,0,1)] font-medium">
               FLAGSHIP EVENTS ACROSS DIVERSE CATEGORIES
             </p>
           </motion.div>
@@ -581,11 +594,9 @@ export default function EventsSection() {
                   transition={{ duration: 0.45, delay: index * 0.06 }}
                   className="group cursor-pointer w-full h-full"
                 >
-                  {/* Card: fill grid cell, flex column */}
                   <div
-                    className={`relative overflow-hidden rounded-xl ${category.bgColor} backdrop-blur-sm border border-white/20 p-0 hover:bg-white/10 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10 hover:scale-105 flex flex-col h-full`}
+                    className={`relative overflow-hidden rounded-xl backdrop-blur-lg bg-black/60 border border-purple-400/40 p-0 hover:bg-black/70 transition-all duration-300 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] hover:scale-105 flex flex-col h-full`}
                   >
-                    {/* Image (fixed) */}
                     <motion.div
                       layoutId={`image-${category.name}-${id}`}
                       className="flex-none"
@@ -599,18 +610,17 @@ export default function EventsSection() {
                       />
                     </motion.div>
 
-                    {/* Body (flex-1) */}
                     <div className="flex-1 flex flex-col items-center text-center justify-between p-4 min-h-0">
                       <div className="w-full">
                         <div className="flex items-center justify-center mb-2">
                           <div
-                            className={`p-3 rounded-full bg-gradient-to-r ${category.color} mr-3 shadow-lg`}
+                            className={`p-3 rounded-full bg-gradient-to-r ${category.color} mr-3 shadow-[0_0_20px_rgba(168,85,247,0.6)]`}
                           >
                             <category.icon size={24} className="text-white" />
                           </div>
                           <motion.h3
                             layoutId={`title-${category.name}-${id}`}
-                            className="font-bold text-white text-xl"
+                            className="font-bold text-cyan-100 text-xl drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]"
                           >
                             {category.name}
                           </motion.h3>
@@ -618,12 +628,11 @@ export default function EventsSection() {
 
                         <motion.p
                           layoutId={`description-${category.description}-${id}`}
-                          className="text-gray-300 mb-2"
+                          className="text-cyan-50 mb-2 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]"
                         >
                           {category.description}
                         </motion.p>
 
-                        {/* events: scroll inside card if needed */}
                         <div className="w-full flex-1 overflow-auto space-y-3 px-2 min-h-0">
                           {category.events.map((event, eventIndex) => (
                             <motion.div
@@ -633,11 +642,11 @@ export default function EventsSection() {
                               transition={{
                                 delay: index * 0.04 + eventIndex * 0.03,
                               }}
-                              className="flex items-center justify-center text-gray-300"
+                              className="flex items-center justify-center text-cyan-100"
                             >
                               <Trophy
                                 size={16}
-                                className="mr-3 text-cyan-400"
+                                className="mr-3 text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,1)]"
                               />
                               <span className="text-sm">{event}</span>
                             </motion.div>
@@ -647,22 +656,22 @@ export default function EventsSection() {
 
                       <div className="w-full mt-3">
                         <div className="grid grid-cols-2 gap-3 w-full mb-2 text-sm">
-                          <div className="text-center p-3 rounded bg-black/20">
-                            <div className="text-cyan-400 font-semibold">
+                          <div className="text-center p-3 rounded bg-black/40 border border-cyan-400/30">
+                            <div className="text-cyan-300 font-semibold drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">
                               {category.details.duration}
                             </div>
-                            <div className="text-gray-400 text-xs">
+                            <div className="text-cyan-100 text-xs">
                               Duration
                             </div>
                           </div>
-                          <div className="text-center p-3 rounded bg-black/20">
-                            <div className="text-yellow-400 font-semibold">
+                          <div className="text-center p-3 rounded bg-black/40 border border-yellow-400/30">
+                            <div className="text-yellow-300 font-semibold drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]">
                               {category.details.prizes}
                             </div>
-                            <div className="text-gray-400 text-xs">Prizes</div>
+                            <div className="text-cyan-100 text-xs">Prizes</div>
                           </div>
                         </div>
-                        <p className="text-gray-400 text-sm">
+                        <p className="text-cyan-200 text-sm drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
                           Click to view details
                         </p>
                       </div>
@@ -673,7 +682,7 @@ export default function EventsSection() {
             </div>
           </div>
 
-          {/* Footer Info - centered */}
+          {/* Footer Info */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -681,12 +690,12 @@ export default function EventsSection() {
             className="w-full flex flex-col items-center text-center"
           >
             <div className="max-w-4xl mx-auto px-4 text-center">
-              <p className="text-gray-400 text-base sm:text-lg mb-6 mx-auto">
+              <p className="text-cyan-100 text-base sm:text-lg mb-6 mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
                 Click on any event card to explore detailed information,
                 schedules, and registration links
               </p>
 
-              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 text-sm text-gray-500 flex-wrap">
+              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 text-sm text-cyan-200 flex-wrap drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
                 <span>• Interactive details</span>
                 <span>• Real-time registration</span>
                 <span>• Prize breakdown</span>

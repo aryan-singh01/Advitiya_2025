@@ -21,9 +21,9 @@ const TextGenerateEffect = ({ words, className = "" }) => {
                 duration: 0.5,
                 delay: idx * 0.05,
               }}
-              className="inline-block mr-2"
+              className="inline-block"
             >
-              {word}{" "}
+              {word}&nbsp;
             </motion.span>
           );
         })}
@@ -52,32 +52,6 @@ export default function AboutSection() {
       id="about"
       className="min-h-screen w-full flex items-center justify-center py-16 md:py-20 relative overflow-hidden"
     >
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-purple-900/20 to-slate-900" />
-
-      {/* Floating Particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 0.5, 0.2],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-      </div>
-
       <div className="relative z-10 w-full flex justify-center items-center">
         <div className="max-w-6xl w-full mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16">
           {/* Section Header */}
@@ -88,22 +62,13 @@ export default function AboutSection() {
             className="text-center mb-12 md:mb-16"
           >
             <motion.h2
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(168,85,247,0.8)]"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8 }}
             >
               About Us
             </motion.h2>
-            <motion.p
-              className="text-base md:text-lg lg:text-xl text-gray-300 mx-auto text-center"
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              The annual techno-cultural fest of IIT ROPAR that
-              celebrates innovation, creativity, and the spirit of youth
-            </motion.p>
           </motion.div>
 
           {/* Main Content */}
@@ -112,10 +77,10 @@ export default function AboutSection() {
             initial={{ opacity: 0, y: 50 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="backdrop-blur-md bg-gradient-to-br from-slate-800/40 via-purple-900/20 to-slate-800/40 rounded-2xl p-6 md:p-10 lg:p-12 border border-purple-500/20 shadow-2xl shadow-purple-500/10"
+            className="backdrop-blur-lg bg-gradient-to-br from-black/70 via-purple-900/50 to-black/70 rounded-2xl p-6 md:p-10 lg:p-12 border border-purple-400/40 shadow-[0_0_50px_rgba(168,85,247,0.3)]"
           >
             <motion.h3
-              className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-6 md:mb-8 text-center"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold text-cyan-200 mb-6 md:mb-8 text-center drop-shadow-[0_0_20px_rgba(34,211,238,0.8)]"
               initial={{ opacity: 0, y: -20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -123,7 +88,10 @@ export default function AboutSection() {
               Where Dreams Meet Reality
             </motion.h3>
 
-            <TextGenerateEffect words={content} className="text-gray-300" />
+            <TextGenerateEffect
+              words={content}
+              className="text-cyan-50 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+            />
 
             {/* Stats */}
             <motion.div
@@ -133,29 +101,29 @@ export default function AboutSection() {
               transition={{ duration: 0.6, delay: 1 }}
             >
               <motion.div
-                className="flex items-center space-x-2"
+                className="flex items-center space-x-2 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-cyan-400/40"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse" />
-                <span className="text-cyan-400 font-semibold text-sm md:text-base">
+                <div className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,211,238,1)]" />
+                <span className="text-cyan-300 font-semibold text-sm md:text-base drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">
                   50+ Events
                 </span>
               </motion.div>
               <motion.div
-                className="flex items-center space-x-2"
+                className="flex items-center space-x-2 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-purple-400/40"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="w-3 h-3 bg-purple-400 rounded-full animate-pulse" />
-                <span className="text-purple-400 font-semibold text-sm md:text-base">
+                <div className="w-3 h-3 bg-purple-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(168,85,247,1)]" />
+                <span className="text-purple-300 font-semibold text-sm md:text-base drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]">
                   100+ Colleges
                 </span>
               </motion.div>
               <motion.div
-                className="flex items-center space-x-2"
+                className="flex items-center space-x-2 bg-black/60 backdrop-blur-md px-4 py-2 rounded-full border border-pink-400/40"
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="w-3 h-3 bg-pink-400 rounded-full animate-pulse" />
-                <span className="text-pink-400 font-semibold text-sm md:text-base">
+                <div className="w-3 h-3 bg-pink-400 rounded-full animate-pulse shadow-[0_0_10px_rgba(236,72,153,1)]" />
+                <span className="text-pink-300 font-semibold text-sm md:text-base drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]">
                   5000+ Participants
                 </span>
               </motion.div>

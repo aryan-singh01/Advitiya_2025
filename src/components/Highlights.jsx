@@ -1,40 +1,36 @@
 "use client";
 
+import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 
-const TextGenerateEffect = ({ words, className = "" }) => {
-  const wordsArray = words.split(" ");
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
-
-  const renderWords = () => {
-    return (
-      <motion.div ref={ref} className="text-center">
-        {wordsArray.map((word, idx) => {
-          return (
-            <motion.span
-              key={word + idx}
-              initial={{ opacity: 0, filter: "blur(10px)" }}
-              animate={isInView ? { opacity: 1, filter: "blur(0px)" } : {}}
-              transition={{
-                duration: 0.5,
-                delay: idx * 0.05,
-              }}
-              className="inline-block mr-2.5"
-            >
-              {word}{" "}
-            </motion.span>
-          );
-        })}
-      </motion.div>
-    );
-  };
+const TextGenerateEffect = ({ words, className = "", isInView = false }) => {
+  const normalized = words.replace(/([.,;:!?])(?=\S)/g, "$1 ");
+  const wordsArray = normalized.split(/\s+/).filter(Boolean);
 
   return (
     <div className={className}>
-      <div className="text-base md:text-lg lg:text-xl leading-loose text-center tracking-wide">
-        {renderWords()}
+      <div className="text-base md:text-lg lg:text-xl leading-loose text-center tracking-wide whitespace-normal break-words">
+        <motion.div className="text-center inline">
+          {wordsArray.map((word, idx) => (
+            <motion.span
+              key={`${word}-${idx}`}
+              initial={{ opacity: 0, filter: "blur(10px)", y: 6 }}
+              animate={
+                isInView ? { opacity: 1, filter: "blur(0px)", y: 0 } : {}
+              }
+              transition={{ duration: 0.45, delay: idx * 0.03 }}
+              className="inline"
+              style={{
+                display: "inline",
+                wordBreak: "break-word",
+                overflowWrap: "anywhere",
+              }}
+            >
+              {word}
+              {idx !== wordsArray.length - 1 ? " " : ""}
+            </motion.span>
+          ))}
+        </motion.div>
       </div>
     </div>
   );
@@ -52,32 +48,6 @@ export default function Highlights() {
       id="highlights"
       className="min-h-screen w-full flex items-center justify-center py-12 md:py-16 relative overflow-hidden"
     >
-      {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-purple-900/20 to-slate-900" />
-
-      {/* Floating Particles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-1 h-1 bg-cyan-400/30 rounded-full"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 0.5, 0.2],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
-      </div>
-
       <div className="relative z-10 w-full flex justify-center items-center">
         <div className="max-w-6xl w-full mx-4 sm:mx-6 md:mx-8 lg:mx-12 xl:mx-16">
           {/* Section Header */}
@@ -88,7 +58,7 @@ export default function Highlights() {
             className="text-center mb-12 md:mb-16"
           >
             <motion.h2
-              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent"
+              className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(168,85,247,0.8)]"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8 }}
@@ -103,11 +73,12 @@ export default function Highlights() {
             initial={{ opacity: 0, y: 50 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
-            className="backdrop-blur-md bg-gradient-to-br from-slate-800/40 via-purple-900/20 to-slate-800/40 rounded-2xl p-6 md:p-10 lg:p-12 border border-purple-500/20 shadow-2xl shadow-purple-500/10"
+            className="backdrop-blur-lg bg-gradient-to-br from-black/70 via-purple-900/50 to-black/70 rounded-2xl p-6 md:p-10 lg:p-12 border border-purple-400/40 shadow-[0_0_50px_rgba(168,85,247,0.3)]"
           >
             <TextGenerateEffect
               words={content}
-              className="text-gray-300 leading-relaxed text-center"
+              className="text-cyan-50 leading-relaxed text-center drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+              isInView={inView}
             />
           </motion.div>
         </div>

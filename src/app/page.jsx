@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <main className="relative min-h-screen">
       {/* Dynamic Background */}
-      <ParticleBackground />
+      {/* <ParticleBackground /> */}
 
       {/* Navigation */}
       <NavigationBar />

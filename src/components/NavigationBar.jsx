@@ -1,267 +1,3 @@
-
-// "use client";
-
-// import { useState, useEffect } from "react";
-// import { motion, AnimatePresence } from "framer-motion";
-// import {
-//   Menu,
-//   X,
-//   Home,
-//   Calendar,
-//   Users,
-//   Trophy,
-//   Mail,
-//   UserPlus,
-// } from "lucide-react";
-// import Link from "next/link";
-
-// export default function NavigationBar() {
-//   const [isOpen, setIsOpen] = useState(false);
-//   const [scrolled, setScrolled] = useState(false);
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       setScrolled(window.scrollY > 50);
-//     };
-//     window.addEventListener("scroll", handleScroll);
-//     return () => window.removeEventListener("scroll", handleScroll);
-//   }, []);
-
-//   const navItems = [
-//     { name: "Home", href: "#home", icon: Home },
-//     { name: "Events", href: "#events", icon: Calendar },
-//     { name: "About", href: "#about", icon: Users },
-//     { name: "Sponsors", href: "#sponsors", icon: Trophy },
-//     { name: "Contact", href: "#contact", icon: Mail },
-//   ];
-
-//   return (
-//     <motion.nav
-//       initial={{ y: -100 }}
-//       animate={{ y: 0 }}
-//       transition={{ duration: 0.5 }}
-//       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-//         scrolled ? "glass py-4" : "bg-transparent py-6"
-//       }`}
-//     >
-//       <div className="container mx-auto px-6">
-//         <div className="flex justify-between items-center">
-//           {/* Logo - Keep original size */}
-//           <Link href="/" className="flex items-center">
-//             <motion.span
-//               className="text-3xl md:text-4xl font-bold gradient-text"
-//               whileHover={{ scale: 1.05 }}
-//               transition={{ duration: 0.3 }}
-//             >
-//               ADVITIYA 2026
-//             </motion.span>
-//           </Link>
-
-//           {/* Desktop Menu */}
-//           <div className="hidden md:flex items-center gap-8">
-//             {navItems.map((item, index) => (
-//               <Link
-//                 key={item.name}
-//                 href={item.href}
-//                 className="relative group flex items-center"
-//               >
-//                 <span className="text-white hover:text-cyan-400 transition-colors flex items-center gap-3 text-xl font-semibold">
-//                   <item.icon size={24} />
-//                   <span>{item.name}</span>
-//                 </span>
-//                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-400 group-hover:w-full transition-all duration-300" />
-//               </Link>
-//             ))}
-
-//             <motion.button
-//               whileHover={{ scale: 1.05 }}
-//               whileTap={{ scale: 0.95 }}
-//               className="ml-6 px-8 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-white font-bold text-xl hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 flex items-center space-x-2"
-//             >
-//               <UserPlus size={22} />
-//               <span>Register Now</span>
-//             </motion.button>
-//           </div>
-
-//           {/* Mobile Menu Button */}
-//           <button
-//             onClick={() => setIsOpen(!isOpen)}
-//             className="md:hidden text-white p-2"
-//           >
-//             {isOpen ? <X size={28} /> : <Menu size={28} />}
-//           </button>
-//         </div>
-
-//         {/* Mobile Menu */}
-//         <AnimatePresence>
-//           {isOpen && (
-//             <motion.div
-//               initial={{ opacity: 0, height: 0 }}
-//               animate={{ opacity: 1, height: "auto" }}
-//               exit={{ opacity: 0, height: 0 }}
-//               transition={{ duration: 0.3 }}
-//               className="md:hidden mt-6"
-//             >
-//               <div className="flex flex-col space-y-6 glass rounded-lg p-6">
-//                 {navItems.map((item) => (
-//                   <Link
-//                     key={item.name}
-//                     href={item.href}
-//                     onClick={() => setIsOpen(false)}
-//                     className="text-white hover:text-cyan-400 transition-colors flex items-center space-x-4 text-xl font-semibold"
-//                   >
-//                     <item.icon size={22} />
-//                     <span>{item.name}</span>
-//                   </Link>
-//                 ))}
-//                 <button className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-white font-bold text-xl flex items-center justify-center space-x-2 mt-4">
-//                   <UserPlus size={22} />
-//                   <span>Register Now</span>
-//                 </button>
-//               </div>
-//             </motion.div>
-//           )}
-//         </AnimatePresence>
-//       </div>
-//     </motion.nav>
-//   );
-// }
-
-// "use client";
-
-// import { useState, useEffect } from "react";
-// import { motion, AnimatePresence } from "framer-motion";
-// import {
-//   Menu,
-//   X,
-//   Home,
-//   Calendar,
-//   Users,
-//   Trophy,
-//   Mail,
-//   UserPlus,
-// } from "lucide-react";
-// import Link from "next/link";
-
-// export default function NavigationBar() {
-//   const [isOpen, setIsOpen] = useState(false);
-//   const [scrolled, setScrolled] = useState(false);
-
-//   useEffect(() => {
-//     const handleScroll = () => {
-//       setScrolled(window.scrollY > 50);
-//     };
-//     window.addEventListener("scroll", handleScroll);
-//     return () => window.removeEventListener("scroll", handleScroll);
-//   }, []);
-
-//   const navItems = [
-//     { name: "Home", href: "#home", icon: Home },
-//     { name: "Events", href: "#events", icon: Calendar },
-//     { name: "About", href: "#about", icon: Users },
-//     { name: "Sponsors", href: "#sponsors", icon: Trophy },
-//     { name: "Contact", href: "#contact", icon: Mail },
-//   ];
-
-//   return (
-//     <motion.nav
-//       initial={{ y: -100 }}
-//       animate={{ y: 0 }}
-//       transition={{ duration: 0.5 }}
-//       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-//         scrolled ? "glass py-4" : "bg-transparent py-6"
-//       }`}
-//     >
-//       <div className="max-w-full mx-auto px-4 lg:px-6">
-//         <div className="flex justify-between items-center">
-//           {/* Logo - Keep original size */}
-//           <Link href="/" className="flex items-center flex-shrink-0">
-//             <motion.span
-//               className="text-3xl md:text-4xl font-bold gradient-text"
-//               whileHover={{ scale: 1.05 }}
-//               transition={{ duration: 0.3 }}
-//             >
-//               ADVITIYA 2026
-//             </motion.span>
-//           </Link>
-
-//           {/* Desktop Menu */}
-//           <div className="hidden md:flex items-center ml-auto">
-//             {/* Navigation Links */}
-//             <div className="flex items-center gap-8 mr-6">
-//               {navItems.map((item, index) => (
-//                 <Link
-//                   key={item.name}
-//                   href={item.href}
-//                   className="relative group flex items-center flex-shrink-0"
-//                 >
-//                   <span className="text-white hover:text-cyan-400 transition-colors flex items-center gap-3 text-xl font-semibold">
-//                     <item.icon size={24} />
-//                     <span>{item.name}</span>
-//                   </span>
-//                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-purple-400 group-hover:w-full transition-all duration-300" />
-//                 </Link>
-//               ))}
-//             </div>
-
-//             {/* Register Button */}
-//             <motion.button
-//               whileHover={{ scale: 1.05 }}
-//               whileTap={{ scale: 0.95 }}
-//               className="bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-white font-bold text-2xl hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 flex items-center gap-4 flex-shrink-0"
-//               style={{
-//                 padding: "10px 20px",
-//               }}
-//             >
-//               <UserPlus size={26} />
-//               <span>Register Now</span>
-//             </motion.button>
-//           </div>
-
-//           {/* Mobile Menu Button */}
-//           <button
-//             onClick={() => setIsOpen(!isOpen)}
-//             className="md:hidden text-white p-2"
-//           >
-//             {isOpen ? <X size={28} /> : <Menu size={28} />}
-//           </button>
-//         </div>
-
-//         {/* Mobile Menu */}
-//         <AnimatePresence>
-//           {isOpen && (
-//             <motion.div
-//               initial={{ opacity: 0, height: 0 }}
-//               animate={{ opacity: 1, height: "auto" }}
-//               exit={{ opacity: 0, height: 0 }}
-//               transition={{ duration: 0.3 }}
-//               className="md:hidden mt-6"
-//             >
-//               <div className="flex flex-col space-y-6 glass rounded-lg p-6">
-//                 {navItems.map((item) => (
-//                   <Link
-//                     key={item.name}
-//                     href={item.href}
-//                     onClick={() => setIsOpen(false)}
-//                     className="text-white hover:text-cyan-400 transition-colors flex items-center space-x-4 text-xl font-semibold"
-//                   >
-//                     <item.icon size={22} />
-//                     <span>{item.name}</span>
-//                   </Link>
-//                 ))}
-//                 <button className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-white font-bold text-xl flex items-center justify-center space-x-2 mt-4">
-//                   <UserPlus size={22} />
-//                   <span>Register Now</span>
-//                 </button>
-//               </div>
-//             </motion.div>
-//           )}
-//         </AnimatePresence>
-//       </div>
-//     </motion.nav>
-//   );
-// }
-
 "use client";
 
 import { useState, useEffect } from "react";
@@ -274,9 +10,11 @@ import {
   Users,
   Trophy,
   Mail,
+  MicVocal,
   UserPlus,
 } from "lucide-react";
 import Link from "next/link";
+// import CA from "@/components/CA";
 
 export default function NavigationBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -294,9 +32,10 @@ export default function NavigationBar() {
   const navItems = [
     { name: "Home", href: "#home", icon: Home },
     { name: "Events", href: "#events", icon: Calendar },
-    { name: "About", href: "#about", icon: Users },
+    { name: "Our Team", href: "#team", icon: Users },
     { name: "Sponsors", href: "#sponsors", icon: Trophy },
-    { name: "Contact", href: "#contact", icon: Mail },
+    { name: "Contact Us", href: "#contact", icon: Mail },
+    { name: "CA", href: "/ca", icon: MicVocal },
   ];
 
   return (
@@ -309,8 +48,7 @@ export default function NavigationBar() {
       }`}
     >
       {/* --- Centered container --- */}
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-8">
-      {/* <div className="max-w-7xl mx-auto flex justify-between items-center px-8 border border-red-500"> */}
+      <div className="max-w-[95%] mx-auto flex justify-between items-center px-4">
         {/* --- Left Logo --- */}
         <Link href="/" className="flex items-center">
           <motion.span
@@ -322,8 +60,8 @@ export default function NavigationBar() {
           </motion.span>
         </Link>
 
-        {/* --- Desktop Menu --- */}
-        <div className="hidden md:flex items-center gap-10">
+        {/* --- Desktop Menu with significant spacing --- */}
+        <div className="hidden md:flex items-center gap-8 mr-6">
           {navItems.map((item) => (
             <Link
               key={item.name}
@@ -338,11 +76,12 @@ export default function NavigationBar() {
             </Link>
           ))}
 
-          {/* --- Register Now Button --- */}
+          {/* --- Register Now Button with balanced padding --- */}
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-white font-semibold text-xl px-6 py-2 hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 flex items-center gap-3"
+            className="bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-white font-semibold text-xl hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 flex items-center whitespace-nowrap ml-4"
+            style={{ padding: "8px 24px", gap: "10px" }}
           >
             <UserPlus size={22} />
             <span>Register Now</span>
@@ -381,7 +120,10 @@ export default function NavigationBar() {
                 </Link>
               ))}
 
-              <button className="w-full px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-white font-semibold text-xl flex items-center justify-center gap-2 mt-4">
+              <button
+                className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-white font-semibold text-xl flex items-center justify-center mt-4"
+                style={{ padding: "8px 24px", gap: "10px" }}
+              >
                 <UserPlus size={22} />
                 <span>Register Now</span>
               </button>
