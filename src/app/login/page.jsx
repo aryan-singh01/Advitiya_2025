@@ -38,7 +38,7 @@ const LoginPage = () => {
         setError(errorMsg);
       } else if (result?.ok) {
         toast.success("Login successful! Welcome back.");
-        router.push("/dashboard");
+        router.push(`/`);
       }
     } catch (error) {
       console.error("Error during login:", error);
