@@ -8,7 +8,7 @@ export default function PrefestLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="theme-prefest min-h-screen">
+      <body className="min-h-screen">
         <NavBar />
         {children}
         <Footer />
