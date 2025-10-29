@@ -7,7 +7,7 @@ export const eventData = [
     minSize: 1,
     maxSize: 1,
     participants: [],
-    isRegistrationOpen: true,
+    isRegistrationOpen: false,
     createdAt: "2025-10-27T05:30:00Z",
     updatedAt: "2025-10-27T05:30:00Z",
     eventImage: "/images/events/flight-fury.png",
