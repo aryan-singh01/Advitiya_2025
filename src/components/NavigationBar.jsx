@@ -178,6 +178,7 @@ import {
   Mail,
   MicVocal,
   UserPlus,
+  Sparkles
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -214,6 +215,7 @@ export default function NavigationBar() {
     { name: "Sponsors", href: "/sponsors", icon: Trophy },
     { name: "Contact Us", href: "/contact", icon: Mail },
     { name: "CA", href: "/ca", icon: MicVocal },
+    { name: "Prefest", href: "/prefest", icon: Sparkles },
   ];
 
   return (

@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import NavigationBar from "@/components/NavigationBar";
 import Hero from "@/components/Hero";
+import OurTeam from "@/components/sponsors"
 import EventsSection from "@/components/EventsSection";
 import AboutSection from "@/components/AboutSection";
 import Footer from "@/components/Footer";
@@ -25,6 +26,8 @@ export default function Home() {
         <AboutSection />
         <Teaser />
         <EventsSection />
+        <OurTeam />
+
         <Highlights />
       </div>
     </main>
