@@ -28,68 +28,73 @@ export default function EventCreation() {
   const [submitButtonDisable, setSubmitButtonDisable] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    
-    const form = e.target as HTMLFormElement;
-    const eventName = (form.elements.namedItem("eventName") as HTMLInputElement)?.value;
-    const eventEmail = (form.elements.namedItem("email") as HTMLInputElement)?.value;
-    const eventFees = (form.elements.namedItem("eventFees") as HTMLInputElement)?.value;
-    let teamMinSize = (form.elements.namedItem("teamMinSize") as HTMLInputElement)?.value;
-    let teamMaxSize = (form.elements.namedItem("teamMaxSize") as HTMLInputElement)?.value;
-    const description = (form.elements.namedItem("description") as HTMLInputElement)?.value;
-    const webPageLink = (form.elements.namedItem("webPageLink") as HTMLInputElement)?.value;
+  e.preventDefault();
+  
+  const form = e.target as HTMLFormElement;
+  const eventName = (form.elements.namedItem("eventName") as HTMLInputElement)?.value;
+  const eventEmail = (form.elements.namedItem("email") as HTMLInputElement)?.value;
+  const eventFees = (form.elements.namedItem("eventFees") as HTMLInputElement)?.value;
+  let teamMinSize = (form.elements.namedItem("teamMinSize") as HTMLInputElement)?.value;
+  let teamMaxSize = (form.elements.namedItem("teamMaxSize") as HTMLInputElement)?.value;
+  const description = (form.elements.namedItem("description") as HTMLInputElement)?.value;
+  const webPageLink = (form.elements.namedItem("webPageLink") as HTMLInputElement)?.value;
 
-    if (isIndividualParticipation) {
-      teamMinSize = "1";
-      teamMaxSize = "1";
-    } else if (!teamMinSize || !teamMaxSize) {
-      toast.error("Team Maximum Size and Minimum Size is required.")
-      return;
-    }
+  if (isIndividualParticipation) {
+    teamMinSize = "1";
+    teamMaxSize = "1";
+  } else if (!teamMinSize || !teamMaxSize) {
+    toast.error("Team Maximum Size and Minimum Size is required.");
+    return;
+  }
 
-    if (Number(teamMinSize) > Number(teamMaxSize)) {
-      toast.error("Minimum size of team should be less than Maximum size of team")
-      return;
-    }
+  if (Number(teamMinSize) > Number(teamMaxSize)) {
+    toast.error("Minimum size of team should be less than Maximum size of team");
+    return;
+  }
 
-    if (!eventName || !eventEmail || !eventFees || !eventLogo || !date || !timeString || !description || !webPageLink) {
-      toast.error("All Fields are required")
-      return;
-    }
+  if (!eventName || !eventEmail || !eventFees || !eventLogo || !date || !timeString || !description || !webPageLink) {
+    toast.error("All Fields are required");
+    return;
+  }
 
-    const day = String(date.getDate()).padStart(2, '0');       
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const year = date.getFullYear();                           
-    const dateString = `${day}/${month}/${year}`;
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+  const dateString = `${day}/${month}/${year}`;
 
-    const eventFormData = new FormData();
-    eventFormData.append("eventName", eventName);
-    eventFormData.append("eventDate", dateString);
-    eventFormData.append("eventTime", timeString);
-    eventFormData.append("eventFees", eventFees);
-    eventFormData.append("minSize", teamMinSize);
-    eventFormData.append("maxSize", teamMaxSize);
-    eventFormData.append("eventImage", eventLogo);
+  const eventFormData = new FormData();
+  eventFormData.append("eventName", eventName);
+  eventFormData.append("eventDate", dateString);
+  eventFormData.append("eventTime", timeString);
+  eventFormData.append("eventFees", eventFees);
+  eventFormData.append("minSize", teamMinSize);
+  eventFormData.append("maxSize", teamMaxSize);
+  eventFormData.append("eventImage", eventLogo);
 
-    if (eventRuleBook) {
-      eventFormData.append("eventRuleBook", eventRuleBook);
-    }
+  if (eventRuleBook) {
+    eventFormData.append("eventRuleBook", eventRuleBook);
+  }
 
-    eventFormData.append("description", description);
-    eventFormData.append("isRegistrationOpen", isRegistrationOpen.toString());
-    eventFormData.append("webPageLink", webPageLink);
+  eventFormData.append("description", description);
+  eventFormData.append("isRegistrationOpen", isRegistrationOpen.toString());
+  eventFormData.append("webPageLink", webPageLink);
 
-    setSubmitButtonDisable(true);
+  setSubmitButtonDisable(true);
 
-    try {
-      const response = await axios.post("/api/events/createEvent", eventFormData);
-      toast.success(response.data.message);
-    } catch (error: any) {
+  try {
+    const response = await axios.post("/api/events/createEvent", eventFormData);
+    toast.success(response.data.message);
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
       toast.error(error.response?.data?.message || "Something went wrong");
+    } else {
+      toast.error("An unexpected error occurred");
     }
+  }
 
-    setSubmitButtonDisable(false);
-  };
+  setSubmitButtonDisable(false);
+};
+
 
 
   return (
