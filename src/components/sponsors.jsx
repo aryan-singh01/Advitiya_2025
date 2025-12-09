@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useId, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import {
   Code,
   Music,
@@ -26,7 +26,7 @@ const sponsors = [
     src: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1200&h=600&fit=crop&crop=entropy&auto=format",
     ctaText: "Visit Site",
     ctaLink: "#",
-    details: { industry: "Software", founded: "2016", hq: "Bengaluru" },
+    
     content: () => (
       <div className="space-y-4 text-center">
         <p className="text-neutral-600 dark:text-neutral-400">
@@ -44,7 +44,7 @@ const sponsors = [
     src: "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=1200&h=600&fit=crop&crop=entropy&auto=format",
     ctaText: "Visit Site",
     ctaLink: "#",
-    details: { industry: "Energy", founded: "2012", hq: "Gurugram" },
+    
     content: () => (
       <div className="space-y-4 text-center">
         <p className="text-neutral-600 dark:text-neutral-400">
@@ -59,10 +59,10 @@ const sponsors = [
     icon: Briefcase,
     color: "from-yellow-500 to-orange-500",
     description: "Smart payments and lending APIs.",
-    src: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1200&h=600&fit=crop&crop=entropy&auto=format",
+    src: "https://images.unsplash.com/photo-1556745738-8d76bdb6984b?w=1200&h=600&fit=crop&crop=entropy&auto=format",
     ctaText: "Visit Site",
     ctaLink: "#",
-    details: { industry: "Finance", founded: "2018", hq: "Mumbai" },
+    
     content: () => (
       <div className="space-y-4 text-center">
         <p className="text-neutral-600 dark:text-neutral-400">
@@ -80,7 +80,7 @@ const sponsors = [
     src: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=1200&h=600&fit=crop&crop=entropy&auto=format",
     ctaText: "Visit Site",
     ctaLink: "#",
-    details: { industry: "Creative", founded: "2014", hq: "Pune" },
+    
     content: () => (
       <div className="space-y-4 text-center">
         <p className="text-neutral-600 dark:text-neutral-400">
@@ -98,7 +98,7 @@ const sponsors = [
     src: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=600&fit=crop&crop=entropy&auto=format",
     ctaText: "Visit Site",
     ctaLink: "#",
-    details: { industry: "Telecom", founded: "2010", hq: "Hyderabad" },
+    
     content: () => (
       <div className="space-y-4 text-center">
         <p className="text-neutral-600 dark:text-neutral-400">
@@ -116,7 +116,7 @@ const sponsors = [
     src: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=1200&h=600&fit=crop&crop=entropy&auto=format",
     ctaText: "Visit Site",
     ctaLink: "#",
-    details: { industry: "Healthcare", founded: "2015", hq: "Chennai" },
+    
     content: () => (
       <div className="space-y-4 text-center">
         <p className="text-neutral-600 dark:text-neutral-400">
@@ -170,39 +170,12 @@ function useOutsideClick(ref, handler) {
 
 export default function EventsSection() {
   const [active, setActive] = useState(null);
-  const ref = useRef(null);
+  const carouselRef = useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
   const id = useId();
-  const [current, setCurrent] = useState(0);
-  const [itemsPerView, setItemsPerView] = useState(3);
-  const [paused, setPaused] = useState(false);
 
-  useEffect(() => {
-    function compute() {
-      const w = window.innerWidth;
-      if (w < 640) setItemsPerView(1);
-      else if (w < 1024) setItemsPerView(2);
-      else setItemsPerView(3);
-    }
-    compute();
-    window.addEventListener("resize", compute);
-    return () => window.removeEventListener("resize", compute);
-  }, []);
-
-  const maxIndex = Math.max(0, sponsors.length - itemsPerView);
-
-  useEffect(() => {
-    setCurrent((i) => Math.min(i, maxIndex));
-  }, [itemsPerView, maxIndex]);
-
-  // Autoplay: advance every 3s, pause on hover or when modal is open
-  useEffect(() => {
-    if (paused || (active && typeof active === "object")) return;
-    if (maxIndex === 0) return; // no need to slide if everything fits
-    const id = setInterval(() => {
-      setCurrent((i) => (i >= maxIndex ? 0 : i + 1));
-    }, 1500);
-    return () => clearInterval(id);
-  }, [paused, maxIndex, active]);
+  // Duplicate sponsors for infinite loop
+  const duplicatedSponsors = [...sponsors, ...sponsors];
 
   useEffect(() => {
     function onKeyDown(event) {
@@ -221,10 +194,25 @@ export default function EventsSection() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [active]);
 
-  useOutsideClick(ref, () => setActive(null));
+  useOutsideClick(carouselRef, () => setActive(null));
+
+  // Animation variants for the carousel
+  const containerVariants = {
+    animate: (isPaused) => ({
+      x: [0, -1000], // Adjust this value based on your content width
+      transition: {
+        x: {
+          repeat: Infinity,
+          repeatType: "loop",
+          duration: 40, // Adjust speed here (higher = slower)
+          ease: "linear",
+        },
+      },
+    }),
+  };
 
   return (
-    <section id="sponsors" className="w-full py-12 sm:py-16 lg:py-20 relative">
+    <section id="sponsors" className="w-full py-12 sm:py-16 lg:py-20 relative overflow-hidden">
       <div className="flex flex-col items-center justify-center w-full px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-7xl mx-auto space-y-12 sm:space-y-16">
           {/* Modal overlay */}
@@ -266,7 +254,6 @@ export default function EventsSection() {
                   >
                     <Image
                       priority
-                      unoptimized
                       width={700}
                       height={220}
                       src={active.src}
@@ -334,109 +321,124 @@ export default function EventsSection() {
             </p>
           </motion.div>
 
-          {/* Sponsors Grid */}
-          <div className="w-full px-4 sm:px-6 lg:px-8">
-            <div className="relative">
-              <div
-                className="overflow-hidden"
-                onMouseEnter={() => setPaused(true)}
-                onMouseLeave={() => setPaused(false)}
-              >
+          {/* Sponsors Carousel */}
+          <div 
+            className="relative w-full overflow-hidden py-8"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
+            {/* Gradient overlays for fade effect on sides */}
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-gray-900 to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-gray-900 to-transparent z-10 pointer-events-none"></div>
+            
+            <motion.div 
+              ref={carouselRef}
+              className="flex space-x-8"
+              variants={containerVariants}
+              animate={!isPaused ? "animate" : "initial"}
+              custom={isPaused}
+            >
+              {duplicatedSponsors.map((sponsor, index) => (
                 <motion.div
-                  animate={{ x: `-${(100 / itemsPerView) * current}%` }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  className="flex gap-6 sm:gap-8"
-                  style={{ width: `${(100 / itemsPerView) * sponsors.length}%` }}
+                  layoutId={`card-${sponsor.name}-${index}`}
+                  key={`card-${sponsor.name}-${index}`}
+                  onClick={() => setActive(sponsor)}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: (index % sponsors.length) * 0.1 }}
+                  className="group cursor-pointer w-[320px] sm:w-[360px] flex-shrink-0"
+                  whileHover={{ 
+                    y: -10,
+                    transition: { duration: 0.3 }
+                  }}
                 >
-                  {sponsors.map((sponsor, index) => (
-                    <div
-                      key={`slide-${sponsor.name}-${id}`}
+                  <div
+                    className={`relative overflow-hidden rounded-xl backdrop-blur-lg bg-black/60 border border-purple-400/40 p-0 hover:bg-black/70 transition-all duration-300 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] hover:scale-105 flex flex-col h-full`}
+                  >
+                    <motion.div
+                      layoutId={`image-${sponsor.name}-${id}`}
                       className="flex-none"
-                      style={{ minWidth: `${100 / itemsPerView}%` }}
                     >
-                      <motion.div
-                        layoutId={`card-${sponsor.name}-${id}`}
-                        onClick={() => setActive(sponsor)}
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.45, delay: index * 0.06 }}
-                        className="group cursor-pointer w-full h-full"
-                      >
-                        <div
-                          className={`relative overflow-hidden rounded-xl backdrop-blur-lg bg-black/60 border border-purple-400/40 p-0 hover:bg-black/70 transition-all duration-300 hover:shadow-[0_0_40px_rgba(168,85,247,0.4)] hover:scale-105 flex flex-col h-full`}
-                        >
-                          <motion.div
-                            layoutId={`image-${sponsor.name}-${id}`}
-                            className="flex-none"
+                      <div className="relative w-full h-48 overflow-hidden">
+                        <Image
+                          width={600}
+                          height={240}
+                          src={sponsor.src}
+                          alt={sponsor.name}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className={`absolute inset-0 bg-gradient-to-br ${sponsor.color} opacity-50 mix-blend-overlay`}></div>
+                      </div>
+                    </motion.div>
+
+                    <div className="flex-1 flex flex-col items-center text-center justify-between p-4 min-h-0">
+                      <div className="w-full">
+                        <div className="flex items-center justify-center mb-3">
+                          <div
+                            className={`p-2.5 rounded-full bg-gradient-to-r ${sponsor.color} mr-3 shadow-[0_0_20px_rgba(168,85,247,0.6)] transform group-hover:scale-110 transition-transform duration-300`}
                           >
-                            <Image
-                              unoptimized
-                              width={600}
-                              height={240}
-                              src={sponsor.src}
-                              alt={sponsor.name}
-                              className="w-full h-44 rounded-t-lg object-cover object-top group-hover:scale-110 transition-transform duration-300"
-                            />
-                          </motion.div>
-
-                          <div className="flex-1 flex flex-col items-center text-center justify-between p-4 min-h-0">
-                            <div className="w-full">
-                              <div className="flex items-center justify-center mb-2">
-                                <div
-                                  className={`p-3 rounded-full bg-gradient-to-r ${sponsor.color} mr-3 shadow-[0_0_20px_rgba(168,85,247,0.6)]`}
-                                >
-                                  <sponsor.icon size={24} className="text-white" />
-                                </div>
-                                <motion.h3
-                                  layoutId={`title-${sponsor.name}-${id}`}
-                                  className="font-bold text-cyan-100 text-xl drop-shadow-[0_0_10px_rgba(34,211,238,0.8)]"
-                                >
-                                  {sponsor.name}
-                                </motion.h3>
-                              </div>
-
-                              <motion.p
-                                layoutId={`description-${sponsor.description}-${id}`}
-                                className="text-cyan-50 mb-2 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]"
-                              >
-                                {sponsor.sector}
-                              </motion.p>
-                              <div className="w-full flex-1 overflow-auto space-y-2 px-2 min-h-0">
-                                <div className="flex items-center justify-center gap-2 text-cyan-100">
-                                  <Users size={16} className="text-cyan-400" />
-                                  <span className="text-sm">{sponsor.description}</span>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div className="w-full mt-3">
-                              <div className="grid grid-cols-2 gap-3 w-full mb-2 text-sm">
-                                <div className="text-center p-3 rounded bg-black/40 border border-cyan-400/30">
-                                  <div className="text-cyan-300 font-semibold drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">
-                                    {sponsor.details.industry}
-                                  </div>
-                                  <div className="text-cyan-100 text-xs">Industry</div>
-                                </div>
-                                <div className="text-center p-3 rounded bg-black/40 border border-yellow-400/30">
-                                  <div className="text-yellow-300 font-semibold drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]">
-                                    {sponsor.details.founded}
-                                  </div>
-                                  <div className="text-cyan-100 text-xs">Founded</div>
-                                </div>
-                              </div>
-                              <p className="text-cyan-200 text-sm drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
-                                Click to view details
-                              </p>
-                            </div>
+                            <sponsor.icon size={20} className="text-white" />
                           </div>
+                          <motion.h3
+                            layoutId={`title-${sponsor.name}-${index}`}
+                            className="font-bold text-cyan-100 text-xl drop-shadow-[0_0_10px_rgba(34,211,238,0.8)] group-hover:text-white transition-colors"
+                          >
+                            {sponsor.name}
+                          </motion.h3>
                         </div>
-                      </motion.div>
+
+                        <motion.p
+                          layoutId={`sector-${sponsor.sector}-${index}`}
+                          className="text-cyan-200 text-sm font-medium mb-2 px-4 py-1 bg-black/30 rounded-full inline-block"
+                        >
+                          {sponsor.sector}
+                        </motion.p>
+                        <div className="w-full px-4 mb-4">
+                        </div>
+                      </div>
+
+                      <div className="w-full mt-auto px-4 pb-4">
+                        <div className="w-full text-center">
+                          <p className="text-cyan-100 text-base leading-relaxed">
+                            {sponsor.description}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  ))}
+                  </div>
                 </motion.div>
-              </div>
-            </div>
+              ))}
+            </motion.div>
           </div>
+
+          {/* Scroll Indicator */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="flex flex-col items-center justify-center pt-4"
+          >
+            <div className="text-cyan-400/60 text-sm mb-2 flex items-center">
+              <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+              </svg>
+              Scroll to explore
+            </div>
+            <div className="w-24 h-1 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 rounded-full overflow-hidden">
+              <motion.div 
+                className="h-full bg-gradient-to-r from-cyan-400 to-purple-500"
+                initial={{ width: '0%' }}
+                animate={{ width: '100%' }}
+                transition={{ 
+                  duration: 2, 
+                  repeat: Infinity, 
+                  repeatType: 'reverse',
+                  ease: 'easeInOut'
+                }}
+              />
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
