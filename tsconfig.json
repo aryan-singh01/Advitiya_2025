@@ -22,10 +22,8 @@
       "@/*": ["./src/*"]
     }
   },
-<<<<<<< HEAD
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/Background.jsx", "src/components/Background_ca.jsx"],
-=======
+
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/sponsors.jsx"],
->>>>>>> 31e2c96 (updated sponsors section)
+
   "exclude": ["node_modules"]
 }
