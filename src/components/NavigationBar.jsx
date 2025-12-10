@@ -385,7 +385,7 @@ export default function NavigationBar() {
                 onMouseLeave={() => setActiveItem("")}
                 className={`nav-item ${activeItem === item.name ? 'nav-item-active' : ''} px-3 py-2 text-white hover:text-cyan-300 transition-colors flex items-center gap-1.5 text-sm xl:text-base font-medium group`}
               >
-                <motion.div 
+                <motion.div
                   className="icon-float"
                   whileHover={{ rotate: [0, -10, 10, -10, 0] }}
                   transition={{ duration: 0.5 }}
@@ -398,74 +398,74 @@ export default function NavigationBar() {
           </div>
 
 
-            {/* --- Register Now Button with balanced padding --- */}
-            {!session ? (
-              <div className="hidden lg:flex items-center gap-2.5">
-                <a href="/registration">
-                  <motion.button
-                    whileHover={{ scale: 1.08, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="gradient-button px-5 py-2 rounded-full text-white font-semibold text-sm xl:text-base flex items-center gap-2 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/60 transition-all"
-                  >
-                    <motion.div
-                      animate={{ rotate: [0, 360] }}
-                    >
-                      <UserPlus size={18} strokeWidth={2.5} />
-                    </motion.div>
-                    <span>Register</span>
-                  </motion.button>
-                </a>
-
-                <a href="/login">
-                  <motion.button
-                    whileHover={{ scale: 1.08, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="login-button px-5 py-2 rounded-full text-white font-semibold text-sm xl:text-base transition-all"
-                  >
-                    <span>Login</span>
-                  </motion.button>
-                </a>
-              </div>
-            ) : (
-              <div className="flex justify-center items-center gap-x-2">
-                {/* Profile Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
+          {/* --- Register Now Button with balanced padding --- */}
+          {!session ? (
+            <div className="hidden lg:flex items-center gap-2.5">
+              <a href="/registration">
+                <motion.button
+                  whileHover={{ scale: 1.08, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="gradient-button px-5 py-2 rounded-full text-white font-semibold text-sm xl:text-base flex items-center gap-2 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/60 transition-all"
                 >
-                  <Link
-                    href={`profile/${session.user.id}`}
-                    className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-white font-semibold text-xl flex items-center justify-center"
-                    style={{ padding: "12px 24px", gap: "10px" }}
+                  <motion.div
+                    animate={{ rotate: [0, 360] }}
                   >
-                    <UserPlus size={22} />
-                    <span>Profile</span>
-                  </Link>
-                </motion.div>
+                    <UserPlus size={18} strokeWidth={2.5} />
+                  </motion.div>
+                  <span>Register</span>
+                </motion.button>
+              </a>
 
-                {/* Logout Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 }}
+              <a href="/login">
+                <motion.button
+                  whileHover={{ scale: 1.08, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="login-button px-5 py-2 rounded-full text-white font-semibold text-sm xl:text-base transition-all"
                 >
-                  <div
-                    className="w-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white font-semibold text-xl flex items-center justify-center hover:cursor-pointer"
-                    style={{ padding: "12px 24px", gap: "10px" }}
-                    onClick={() => Logout()}
-                  >
-                    <span>Logout</span>
-                  </div>
-                </motion.div>
-              </div>
-            )}
-          
+                  <span>Login</span>
+                </motion.button>
+              </a>
+            </div>
+          ) : (
+            <div className="hidden lg:flex justify-center items-center gap-x-2">
+              {/* Profile Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+              >
+                <Link
+                  href={`profile/${session.user.id}`}
+                  className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-white font-semibold text-xl flex items-center justify-center"
+                  style={{ padding: "12px 24px", gap: "10px" }}
+                >
+                  <UserPlus size={22} />
+                  <span>Profile</span>
+                </Link>
+              </motion.div>
+
+              {/* Logout Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+              >
+                <div
+                  className="w-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white font-semibold text-xl flex items-center justify-center hover:cursor-pointer"
+                  style={{ padding: "12px 24px", gap: "10px" }}
+                  onClick={() => Logout()}
+                >
+                  <span>Logout</span>
+                </div>
+              </motion.div>
+            </div>
+          )}
+
 
           {/* --- Mobile Toggle Button --- */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-white p-2"
+            className="lg:hidden text-white p-2 h-full"
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -473,47 +473,47 @@ export default function NavigationBar() {
 
         {/* --- Mobile Menu --- */}
         <AnimatePresence>
-        {isOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black/85 backdrop-blur-md z-40 lg:hidden"
-              onClick={() => setIsOpen(false)}
-            />
+          {isOpen && (
+            <>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="fixed inset-0 bg-black/85 backdrop-blur-md z-40 lg:hidden h-screen"
+                onClick={() => setIsOpen(false)}
+              />
 
-            <motion.div
-              initial={{ opacity: 0, x: "100%" }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: "100%" }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-              className="fixed top-0 right-0 h-full w-[85%] max-w-md z-50 lg:hidden"
-            >
-              <div className="h-full bg-gradient-to-br from-slate-900 via-purple-900/60 to-slate-900 backdrop-blur-xl p-6 pt-20 flex flex-col space-y-1 overflow-y-auto border-l-2 border-purple-500/40">
-                {navItems.map((item, index) => (
-                  <motion.div
-                    key={item.name}
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.08 }}
-                  >
-                    <a
-                      href={item.href}
-                      onClick={() => setIsOpen(false)}
-                      className="text-white hover:text-cyan-300 hover:bg-white/5 transition-all flex items-center gap-4 text-lg font-semibold py-4 px-4 rounded-lg border-b border-white/10 group"
+              <motion.div
+                initial={{ opacity: 0, x: "100%" }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: "100%" }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="fixed top-0 right-0 h-full w-[85%] max-w-md z-50 lg:hidden"
+              >
+                <div className="h-full bg-gradient-to-br from-slate-900 via-purple-900/60 to-slate-900 backdrop-blur-xl p-6 pt-20 flex flex-col space-y-1 overflow-y-auto border-l-2 border-purple-500/40">
+                  {navItems.map((item, index) => (
+                    <motion.div
+                      key={item.name}
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.08 }}
                     >
-                      <motion.div
-                        whileHover={{ scale: 1.2, rotate: 360 }}
-                        transition={{ duration: 0.5 }}
+                      <a
+                        href={item.href}
+                        onClick={() => setIsOpen(false)}
+                        className="text-white hover:text-cyan-300 hover:bg-white/5 transition-all flex items-center gap-4 text-lg font-semibold py-4 px-4 rounded-lg border-b border-white/10 group"
                       >
-                        <item.icon size={22} strokeWidth={2.5} className="group-hover:text-purple-400" />
-                      </motion.div>
-                      <span>{item.name}</span>
-                    </a>
-                  </motion.div>
-                ))}
+                        <motion.div
+                          whileHover={{ scale: 1.2, rotate: 360 }}
+                          transition={{ duration: 0.5 }}
+                        >
+                          <item.icon size={22} strokeWidth={2.5} className="group-hover:text-purple-400" />
+                        </motion.div>
+                        <span>{item.name}</span>
+                      </a>
+                    </motion.div>
+                  ))}
 
                   {!session ? (
                     <div className="space-y-2">
@@ -536,18 +536,18 @@ export default function NavigationBar() {
 
                       {/* Login Button */}
                       <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                >
-                  <a
-                    href="/login"
-                    className="login-button w-full py-4 rounded-full text-white font-bold text-lg flex items-center justify-center transition-all"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <span>Login</span>
-                  </a>
-                </motion.div>
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.6 }}
+                      >
+                        <a
+                          href="/login"
+                          className="login-button w-full py-4 rounded-full text-white font-bold text-lg flex items-center justify-center transition-all"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          <span>Login</span>
+                        </a>
+                      </motion.div>
                     </div>
                   ) : (
                     <div className="space-y-2">
@@ -555,31 +555,31 @@ export default function NavigationBar() {
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6 }}
+                        transition={{ delay: 0.5 }}
+                        className="pt-6"
                       >
-                        <Link
-                          href={`profile/${session.user.id}`}
-                          className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-white font-semibold text-xl flex items-center justify-center mt-6"
-                          style={{ padding: "12px 24px", gap: "10px" }}
+                        <a
+                          href={`/profile/${session.user.id}`}
+                          className="gradient-button w-full py-4 rounded-full text-white font-bold text-lg flex items-center justify-center gap-2 shadow-lg shadow-purple-500/40"
+                          onClick={() => setIsOpen(false)}
                         >
-                          <UserPlus size={22} />
+                          <UserPlus size={22} strokeWidth={2.5} />
                           <span>Profile</span>
-                        </Link>
+                        </a>
                       </motion.div>
 
-                      {/* Login Button */}
+                      {/* Logout Button */}
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.7 }}
+                        transition={{ delay: 0.6 }}
                       >
-                        <div
-                          className="w-full pt-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white font-semibold text-xl flex items-center justify-center"
-                          style={{ padding: "12px 24px", gap: "10px" }}
+                        <a
+                          className="login-button w-full py-4 rounded-full text-white font-bold text-lg flex items-center justify-center transition-all"
                           onClick={() => Logout()}
                         >
                           <span>Logout</span>
-                        </div>
+                        </a>
                       </motion.div>
                     </div>
                   )}

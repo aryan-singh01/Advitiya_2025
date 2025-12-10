@@ -33,7 +33,6 @@ const ProfilePage = () => {
         await axios
           .get(`/api/user/profile/${params.userId}`)
           .then((response) => {
-            console.log(response);
             setUserData(response.data.data);
             setParticipations(response.data.data.participation || []);
           })

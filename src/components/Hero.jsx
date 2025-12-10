@@ -268,7 +268,7 @@ export default function Hero() {
                 >
                   {word}
                   {i < 2 && (
-                    <span className="text-purple-400 mx-2 inline-block">•</span>
+                    <span className="text-purple-400 mx-2 sm:inline-block hidden">•</span>
                   )}
                 </motion.span>
               ))}
@@ -282,7 +282,7 @@ export default function Hero() {
             className="flex flex-wrap justify-center gap-4 md:gap-6 mb-10"
           >
             {[
-              { icon: Calendar, text: "March 15-17, 2026", color: "cyan" },
+              { icon: Calendar, text: "February 6-8, 2026", color: "cyan" },
               { icon: MapPin, text: "IIT Ropar", color: "purple" },
               { icon: Users, text: "1000+ Participants", color: "pink" },
             ].map(({ icon: Icon, text, color }, i) => (
@@ -356,7 +356,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer z-20"
+          className="absolute left-1/2 transform -translate-x-1/2 cursor-pointer z-20 "
           onClick={scrollToNextSection}
           role="button"
           tabIndex={0}
