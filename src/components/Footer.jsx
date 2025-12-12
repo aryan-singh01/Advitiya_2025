@@ -156,9 +156,9 @@ import { Mail, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 
 export default function Footer() {
   const socialLinks = [
-    { icon: Instagram, href: "#", color: "hover:text-pink-400" },
+    { icon: Instagram, href: "https://www.instagram.com/advitiya_iitrpr/?hl=en", color: "hover:text-pink-400" },
     { icon: Facebook, href: "#", color: "hover:text-blue-400" },
-    { icon: Linkedin, href: "#", color: "hover:text-cyan-400" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/advitiya-iit-ropar/", color: "hover:text-cyan-400" },
     { icon: Youtube, href: "#", color: "hover:text-red-400" },
   ];
 

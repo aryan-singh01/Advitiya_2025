@@ -177,7 +177,8 @@ import {
   Mail,
   MicVocal,
   UserPlus,
-  Sparkles
+  Sparkles,
+  Shirt
 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
@@ -227,8 +228,8 @@ export default function NavigationBar() {
   const navItems = [
     { name: "Home", href: "/", icon: Home },
     { name: "Events", href: "/events", icon: Calendar },
-    { name: "Our Team", href: "/team", icon: Users },
-    { name: "Sponsors", href: "/sponsors", icon: Trophy },
+    { name: "Our Team", href: "/our-team", icon: Users },
+    { name: "Merchandise", href: "/merchandise", icon: Shirt },
     { name: "Contact Us", href: "/contact", icon: Mail },
     { name: "CA", href: "/ca", icon: MicVocal },
     { name: "Prefest", href: "/prefest", icon: Sparkles },
