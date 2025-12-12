@@ -101,7 +101,7 @@ export default function PlanetLoader({ onComplete }) {
         emissiveIntensity: 0.2,
       });
       const mesh = new THREE.Mesh(geometry, material);
-      
+
       // Create orbit ring
       const orbitGeometry = new THREE.RingGeometry(
         planet.distance - 0.1,
@@ -119,12 +119,12 @@ export default function PlanetLoader({ onComplete }) {
       scene.add(orbit);
 
       scene.add(mesh);
-      
+
       // Start planets at different positions
       const startAngle = (index * Math.PI * 2) / planets.length;
-      return { 
-        mesh, 
-        ...planet, 
+      return {
+        mesh,
+        ...planet,
         angle: startAngle,
         startAngle: 0,
         targetAngle: 0
@@ -138,7 +138,7 @@ export default function PlanetLoader({ onComplete }) {
     let alignmentProgress = 0;
     const alignmentDuration = 240; // frames to align (increased for smoother motion)
     let isAligning = false;
-    let alignStartTime = 90; // Start alignment after initial orbit viewing
+    let alignStartTime = 1; // Start alignment after initial orbit viewing
 
     // Animation
     let frameCount = 0;
@@ -167,20 +167,18 @@ export default function PlanetLoader({ onComplete }) {
       // Move planets with smooth transitions
       planetMeshes.forEach((planet) => {
         if (isAligning && alignmentProgress < 1) {
-          // Smooth ease-in-out interpolation
           const t = alignmentProgress;
-          const easeProgress = t < 0.5 
-            ? 4 * t * t * t 
-            : 1 - Math.pow(-2 * t + 2, 3) / 2; // Cubic ease-in-out
-          
-          // Interpolate between start and target angle
+          const easeProgress = (t < 0.5
+            ? 4 * t * t * t
+            : 1 - Math.pow(-2 * t + 2, 3) / 2);
+
           const angleDiff = planet.targetAngle - planet.startAngle;
           planet.angle = planet.startAngle + angleDiff * easeProgress;
         } else if (!isAligning) {
           // Normal orbit before alignment
-          planet.angle += planet.speed;
+          planet.angle += 0.75 * planet.speed;
         }
-        
+
         // Update position
         planet.mesh.position.x = Math.cos(planet.angle) * planet.distance;
         planet.mesh.position.z = Math.sin(planet.angle) * planet.distance;
@@ -189,8 +187,8 @@ export default function PlanetLoader({ onComplete }) {
 
       // Update alignment progress with smooth increment
       if (isAligning && alignmentProgress < 1) {
-        alignmentProgress += 1 / alignmentDuration;
-        
+        alignmentProgress += 0.45 / alignmentDuration;
+
         // When alignment is complete
         if (alignmentProgress >= 1) {
           alignmentProgress = 1; // Clamp to 1
