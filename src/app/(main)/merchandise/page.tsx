@@ -43,6 +43,7 @@ const merchandiseList = [
   {
     title: "Advitiya T-Shirt",
     src: "",
+    description: "",
     ctaText: "Order Now",
     ctaLink: "https://ui.aceternity.com/templates",
     content: () => {
@@ -93,7 +94,7 @@ function MerchandisePage() {
         <div className="fixed inset-0 z-0 bg-gradient-to-br from-black via-gray-900 to-blue-950">
           <StarsBackground className="w-full h-full" showShootingStars={true} />
         </div>
-        <h1 className="relative z-10 mt-30 text-center justify-center font-bold text-5xl mb-5">
+        <h1 className="relative z-10 mt-34 text-center justify-center font-bold text-5xl mb-5">
           Buy Our Merchandise
         </h1>
         <AnimatePresence>

@@ -40,36 +40,21 @@ const ForgotPasswordPage = () => {
 
     try {
       setIsSendingOTP(true);
-
-      // Get userId from email
-      const userResponse = await axios.post("/api/user/findByEmail", {
-        email: emailValue,
-      });
-
-      if (userResponse.data.success && userResponse.data.userId) {
-        console.log(userResponse.data.userId);
-        setUserId(userResponse.data.userId);
-        setEmail(emailValue);
-
-        // Send OTP
-        const otpResponse = await axios.post(
-          `/api/user/sendOTPForResetPassword`,
-          {
-            type: "RESET",
-            userId: userResponse.data.userId,
-          }
-        );
-
-        if (otpResponse.data.success) {
-          toast.success("OTP sent to your email!");
-          setOtpSent(true);
-        } else {
-          toast.error(otpResponse.data.message || "Failed to send OTP");
+      // Send OTP
+      const otpResponse = await axios.post(
+        `/api/user/sendOTPForResetPassword`,
+        {
+          type: "RESET",
+          email: emailValue,
         }
+      );
+
+      if (otpResponse.data.success) {
+        toast.success("OTP sent to your email!");
+        setUserId(otpResponse.data.data.id)
+        setOtpSent(true);
       } else {
-        toast.error(
-          userResponse.data.message || "User not found with this email"
-        );
+        toast.error(otpResponse.data.message || "Failed to send OTP");
       }
     } catch (error) {
       console.error("Error sending OTP:", error);
@@ -107,7 +92,7 @@ const ForgotPasswordPage = () => {
       setIsSendingOTP(true);
       const response = await axios.post(`/api/user/sendOTPForResetPassword`, {
         type: "RESET",
-        userId: userResponse.data.userId,
+        email: emailValue
       });
 
       if (response.data.success) {
