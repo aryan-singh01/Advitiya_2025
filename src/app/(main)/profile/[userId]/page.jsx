@@ -33,7 +33,6 @@ const ProfilePage = () => {
         await axios
           .get(`/api/user/profile/${params.userId}`)
           .then((response) => {
-            console.log(response);
             setUserData(response.data.data);
             setParticipations(response.data.data.participation || []);
           })
@@ -77,7 +76,7 @@ const ProfilePage = () => {
   }
 
   return (
-    <main className="relative min-h-screen">
+    <main className="relative min-h-screen mt-20">
       <div className="fixed inset-0 z-0 bg-gradient-to-br from-black via-gray-900 to-blue-950">
         <StarsBackground className="w-full h-full" showShootingStars={true} />
       </div>

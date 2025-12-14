@@ -177,38 +177,34 @@ import {
   Mail,
   MicVocal,
   UserPlus,
-  Sparkles
+  Sparkles,
+  Shirt,
 } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
-import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+import { useSession } from "next-auth/react";
 
 export default function NavigationBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeItem, setActiveItem] = useState("");
-  const { data: session } = useSession()
-  const router = useRouter()
-
+  const { data: session } = useSession();
+  const router = useRouter();
 
   const Logout = async () => {
-    console.log("Enter")
-
-    await signOut({ redirect: false, callbackUrl: '/' })
+    await signOut({ redirect: false, callbackUrl: "/" })
       .then(() => {
-        toast.success("User Logout Successfully")
+        toast.success("User Logout Successfully");
         setTimeout(() => {
-          router.push('/')
+          router.push("/");
         }, 1000);
       })
       .catch((error) => {
         toast.error("Error while Logout", {
-          description: error.message
-        })
-      })
-  }
+          description: error.message,
+        });
+      });
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -233,7 +229,7 @@ export default function NavigationBar() {
     { name: "Home", href: "/", icon: Home },
     { name: "Events", href: "/events", icon: Calendar },
     { name: "Our Team", href: "/our-team", icon: Users },
-    { name: "Sponsors", href: "/#sponsors", icon: Trophy },
+    { name: "Merchandise", href: "/merchandise", icon: Shirt },
     { name: "Contact Us", href: "/contact", icon: Mail },
     { name: "CA", href: "/ca", icon: MicVocal },
     { name: "Prefest", href: "/prefest", icon: Sparkles },
@@ -248,14 +244,14 @@ export default function NavigationBar() {
           border-bottom: 1px solid rgba(99, 102, 241, 0.2);
           box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
         }
-        
+
         .nav-item {
           position: relative;
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        
+
         .nav-item::after {
-          content: '';
+          content: "";
           position: absolute;
           bottom: -8px;
           left: 50%;
@@ -266,30 +262,40 @@ export default function NavigationBar() {
           border-radius: 2px;
           transition: transform 0.3s ease;
         }
-        
+
         .nav-item:hover::after {
           transform: translateX(-50%) scaleX(1);
         }
-        
+
         .nav-item-active::after {
           transform: translateX(-50%) scaleX(0.7);
         }
-        
+
         .gradient-button {
-          background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 50%, #ec4899 100%);
+          background: linear-gradient(
+            135deg,
+            #06b6d4 0%,
+            #8b5cf6 50%,
+            #ec4899 100%
+          );
           background-size: 200% 200%;
           animation: gradient-shift 3s ease infinite;
           position: relative;
           overflow: hidden;
         }
-        
+
         @keyframes gradient-shift {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
+          0%,
+          100% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
         }
-        
+
         .gradient-button::before {
-          content: '';
+          content: "";
           position: absolute;
           top: 50%;
           left: 50%;
@@ -300,38 +306,47 @@ export default function NavigationBar() {
           background: rgba(255, 255, 255, 0.3);
           transition: width 0.6s, height 0.6s;
         }
-        
+
         .gradient-button:hover::before {
           width: 300px;
           height: 300px;
         }
-        
+
         .gradient-button span {
           position: relative;
           z-index: 1;
         }
-        
+
         .logo-glow {
           filter: drop-shadow(0 0 20px rgba(6, 182, 212, 0.6));
           transition: all 0.3s ease;
           cursor: pointer;
         }
-        
+
         .logo-glow:hover {
-          filter: drop-shadow(0 0 40px rgba(139, 92, 246, 0.9)) 
-                  drop-shadow(0 0 20px rgba(6, 182, 212, 0.7));
+          filter: drop-shadow(0 0 40px rgba(139, 92, 246, 0.9))
+            drop-shadow(0 0 20px rgba(6, 182, 212, 0.7));
         }
-        
+
         .login-button {
           position: relative;
           border: 2px solid transparent;
-          background: linear-gradient(rgba(10, 10, 30, 0.9), rgba(10, 10, 30, 0.9)) padding-box,
-                      linear-gradient(135deg, #06b6d4, #8b5cf6, #ec4899) border-box;
+          background: linear-gradient(
+                rgba(10, 10, 30, 0.9),
+                rgba(10, 10, 30, 0.9)
+              )
+              padding-box,
+            linear-gradient(135deg, #06b6d4, #8b5cf6, #ec4899) border-box;
           transition: all 0.3s ease;
         }
-        
+
         .login-button:hover {
-          background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 50%, #ec4899 100%);
+          background: linear-gradient(
+            135deg,
+            #06b6d4 0%,
+            #8b5cf6 50%,
+            #ec4899 100%
+          );
           transform: translateY(-2px);
           box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
         }
@@ -340,7 +355,7 @@ export default function NavigationBar() {
           display: inline-block;
           transition: transform 0.3s ease;
         }
-        
+
         .nav-item:hover .icon-float {
           transform: translateY(-3px);
         }
@@ -350,29 +365,34 @@ export default function NavigationBar() {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? "glass-nav py-2" : "bg-transparent py-4"
-          }`}
+        className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+          scrolled ? "glass-nav py-2" : "bg-transparent py-4"
+        }`}
       >
-        {/* --- Centered container --- */}
         <div className="max-w-[98%] mx-auto flex justify-between items-center px-4">
-          {/* --- Left Logo --- */}
-          <Link href="/" className="flex items-center">
-            <motion.span
-              className="text-3xl md:text-4xl font-bold gradient-text"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
+          {/* Logo */}
+          <a href="/" className="flex items-center">
+            <motion.div
+              className="logo-glow"
+              whileHover={{
+                scale: 1.1,
+                rotate: [0, -8, 8, -8, 0],
+              }}
+              whileTap={{ scale: 0.95 }}
+              transition={{
+                scale: { duration: 0.2 },
+                rotate: { duration: 0.5 },
+              }}
             >
-              {/* LOGO */}
-              <Image
+              <img
                 src="/logo.png"
                 alt="Advitiya Logo"
-                width={100}
-                height={100}
+                className="h-16 md:h-26 w-auto"
               />
-            </motion.span>
-          </Link>
+            </motion.div>
+          </a>
 
-          {/* --- Desktop Menu with significant spacing --- */}
+          {/* Desktop Menu - Compact */}
           <div className="hidden lg:flex items-center gap-1 xl:gap-2">
             {navItems.map((item, index) => (
               <motion.a
@@ -383,96 +403,109 @@ export default function NavigationBar() {
                 transition={{ delay: index * 0.05, duration: 0.4 }}
                 onMouseEnter={() => setActiveItem(item.name)}
                 onMouseLeave={() => setActiveItem("")}
-                className={`nav-item ${activeItem === item.name ? 'nav-item-active' : ''} px-3 py-2 text-white hover:text-cyan-300 transition-colors flex items-center gap-1.5 text-sm xl:text-base font-medium group`}
+                className={`nav-item ${
+                  activeItem === item.name ? "nav-item-active" : ""
+                } px-3 py-2 text-white hover:text-cyan-300 transition-colors flex items-center gap-1.5 text-sm xl:text-base font-medium group`}
               >
-                <motion.div 
+                <motion.div
                   className="icon-float"
                   whileHover={{ rotate: [0, -10, 10, -10, 0] }}
                   transition={{ duration: 0.5 }}
                 >
-                  <item.icon size={26} strokeWidth={2.5} className="group-hover:text-purple-400 transition-colors" />
+                  <item.icon
+                    size={26}
+                    strokeWidth={2.5}
+                    className="group-hover:text-purple-400 transition-colors"
+                  />
                 </motion.div>
                 <span>{item.name}</span>
               </motion.a>
             ))}
           </div>
 
-
-            {/* --- Register Now Button with balanced padding --- */}
-            {!session ? (
-              <div className="hidden lg:flex items-center gap-2.5">
-                <a href="/registration">
-                  <motion.button
-                    whileHover={{ scale: 1.08, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="gradient-button px-5 py-2 rounded-full text-white font-semibold text-sm xl:text-base flex items-center gap-2 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/60 transition-all"
-                  >
-                    <motion.div
-                      animate={{ rotate: [0, 360] }}
-                    >
-                      <UserPlus size={18} strokeWidth={2.5} />
-                    </motion.div>
-                    <span>Register</span>
-                  </motion.button>
-                </a>
-
-                <a href="/login">
-                  <motion.button
-                    whileHover={{ scale: 1.08, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="login-button px-5 py-2 rounded-full text-white font-semibold text-sm xl:text-base transition-all"
-                  >
-                    <span>Login</span>
-                  </motion.button>
-                </a>
-              </div>
-            ) : (
-              <div className="flex justify-center items-center gap-x-2">
-                {/* Profile Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
+          {/* Action Buttons - Compact */}
+          {!session ? (
+            <div className="hidden lg:flex items-center gap-2.5">
+              <a href="/registration">
+                <motion.button
+                  whileHover={{ scale: 1.08, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="gradient-button px-5 py-2 rounded-full text-white font-semibold text-sm xl:text-base flex items-center gap-2 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/60 transition-all"
                 >
-                  <Link
-                    href={`profile/${session.user.id}`}
-                    className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-white font-semibold text-xl flex items-center justify-center"
-                    style={{ padding: "12px 24px", gap: "10px" }}
-                  >
-                    <UserPlus size={22} />
-                    <span>Profile</span>
-                  </Link>
-                </motion.div>
+                  <motion.div animate={{ rotate: [0, 360] }}>
+                    <UserPlus size={18} strokeWidth={2.5} />
+                  </motion.div>
+                  <span>Register</span>
+                </motion.button>
+              </a>
 
-                {/* Logout Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 }}
+              <a href="/login">
+                <motion.button
+                  whileHover={{ scale: 1.08, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="login-button px-5 py-2 rounded-full text-white font-semibold text-sm xl:text-base transition-all"
                 >
-                  <div
-                    className="w-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white font-semibold text-xl flex items-center justify-center hover:cursor-pointer"
-                    style={{ padding: "12px 24px", gap: "10px" }}
-                    onClick={() => Logout()}
-                  >
-                    <span>Logout</span>
-                  </div>
-                </motion.div>
-              </div>
-            )}
-          
+                  <span>Login</span>
+                </motion.button>
+              </a>
+            </div>
+          ) : (
+            <div className="hidden lg:flex justify-center items-center gap-x-2">
+              {/* Profile Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+              >
+                <Link
+                  href={`profile/${session.user.id}`}
+                  className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-white font-semibold text-xl flex items-center justify-center"
+                  style={{ padding: "12px 24px", gap: "10px" }}
+                >
+                  <UserPlus size={22} />
+                  <span>Profile</span>
+                </Link>
+              </motion.div>
 
-          {/* --- Mobile Toggle Button --- */}
+              {/* Logout Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+              >
+                <div
+                  className="w-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white font-semibold text-xl flex items-center justify-center hover:cursor-pointer"
+                  style={{ padding: "12px 24px", gap: "10px" }}
+                  onClick={() => Logout()}
+                >
+                  <span>Logout</span>
+                </div>
+              </motion.div>
+            </div>
+          )}
+
+          {/* Mobile Toggle */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-white p-2"
+            className="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors"
+            aria-label="Toggle menu"
           >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
+            <motion.div
+              animate={{ rotate: isOpen ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              {isOpen ? (
+                <X size={26} strokeWidth={2.5} />
+              ) : (
+                <Menu size={26} strokeWidth={2.5} />
+              )}
+            </motion.div>
           </button>
         </div>
+      </motion.nav>
 
-        {/* --- Mobile Menu --- */}
-        <AnimatePresence>
+      {/* Mobile Menu */}
+      <AnimatePresence>
         {isOpen && (
           <>
             <motion.div
@@ -508,87 +541,90 @@ export default function NavigationBar() {
                         whileHover={{ scale: 1.2, rotate: 360 }}
                         transition={{ duration: 0.5 }}
                       >
-                        <item.icon size={22} strokeWidth={2.5} className="group-hover:text-purple-400" />
+                        <item.icon
+                          size={22}
+                          strokeWidth={2.5}
+                          className="group-hover:text-purple-400"
+                        />
                       </motion.div>
                       <span>{item.name}</span>
                     </a>
                   </motion.div>
                 ))}
 
-                  {!session ? (
-                    <div className="space-y-2">
-                      {/* Register Button */}
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.5 }}
-                        className="pt-6"
+                {!session ? (
+                  <div className="space-y-2">
+                    {/* Register Button */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
+                      className="pt-6"
+                    >
+                      <a
+                        href="/registration"
+                        className="gradient-button w-full py-4 rounded-full text-white font-bold text-lg flex items-center justify-center gap-2 shadow-lg shadow-purple-500/40"
+                        onClick={() => setIsOpen(false)}
                       >
-                        <a
-                          href="/registration"
-                          className="gradient-button w-full py-4 rounded-full text-white font-bold text-lg flex items-center justify-center gap-2 shadow-lg shadow-purple-500/40"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          <UserPlus size={22} strokeWidth={2.5} />
-                          <span>Register Now</span>
-                        </a>
-                      </motion.div>
+                        <UserPlus size={22} strokeWidth={2.5} />
+                        <span>Register Now</span>
+                      </a>
+                    </motion.div>
 
-                      {/* Login Button */}
-                      <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                >
-                  <a
-                    href="/login"
-                    className="login-button w-full py-4 rounded-full text-white font-bold text-lg flex items-center justify-center transition-all"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <span>Login</span>
-                  </a>
-                </motion.div>
-                    </div>
-                  ) : (
-                    <div className="space-y-2">
-                      {/* Profile Button */}
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6 }}
+                    {/* Login Button */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6 }}
+                    >
+                      <a
+                        href="/login"
+                        className="login-button w-full py-4 rounded-full text-white font-bold text-lg flex items-center justify-center transition-all"
+                        onClick={() => setIsOpen(false)}
                       >
-                        <Link
-                          href={`profile/${session.user.id}`}
-                          className="w-full bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full text-white font-semibold text-xl flex items-center justify-center mt-6"
-                          style={{ padding: "12px 24px", gap: "10px" }}
-                        >
-                          <UserPlus size={22} />
-                          <span>Profile</span>
-                        </Link>
-                      </motion.div>
+                        <span>Login</span>
+                      </a>
+                    </motion.div>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    {/* Profile Button */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 }}
+                      className="pt-6"
+                    >
+                      <a
+                        href={`/profile/${session.user.id}`}
+                        className="gradient-button w-full py-4 rounded-full text-white font-bold text-lg flex items-center justify-center gap-2 shadow-lg shadow-purple-500/40"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        <UserPlus size={22} strokeWidth={2.5} />
+                        <span>Profile</span>
+                      </a>
+                    </motion.div>
 
-                      {/* Login Button */}
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.7 }}
+                    {/* Logout Button */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6 }}
+                    >
+                      <a
+                        className="login-button w-full py-4 rounded-full text-white font-bold text-lg flex items-center justify-center transition-all"
+                        onClick={() => Logout()}
                       >
-                        <div
-                          className="w-full pt-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full text-white font-semibold text-xl flex items-center justify-center"
-                          style={{ padding: "12px 24px", gap: "10px" }}
-                          onClick={() => Logout()}
-                        >
-                          <span>Logout</span>
-                        </div>
-                      </motion.div>
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            </>
-          )}
-        </AnimatePresence>
-      </motion.nav>
+                        <span>Logout</span>
+                      </a>
+                    </motion.div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 }

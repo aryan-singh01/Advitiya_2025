@@ -22,7 +22,7 @@ const DecorativeDivider = ({
 
 const CA = () => {
   return (
-    <div className="relative min-h-screen bg-transparent text-white overflow-visible">
+    <div className="relative min-h-screen bg-transparent text-white overflow-visible mt-20">
       {/* ✅ overflow-hidden removed to prevent card clipping */}
       <Background />
 
