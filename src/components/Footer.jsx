@@ -168,7 +168,7 @@ export default function Footer() {
       className="relative w-full overflow-hidden bg-gradient-to-b from-black via-purple-950/20 to-black"
     >
       {/* Main footer content */}
-      <div className="relative w-full px-6 lg:px-16 py-8 z-10">
+      <div className="relative w-full px-6 lg:px-16 py-4 z-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
           {/* Left - Contact Section */}
           <motion.div
@@ -204,20 +204,12 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col items-center justify-center space-y-6"
           >
-            <div className="w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 relative">
+            <div className="w-40 h-40 md:w-48 md:h-48 lg:w-60 lg:h-60  relative">
               <img
                 src="/logo.png"
                 alt="Advitiya Logo"
                 className="w-full h-full object-contain drop-shadow-[0_0_25px_rgba(168,85,247,0.7)]"
               />
-            </div>
-            <div className="text-center">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent tracking-wider drop-shadow-[0_0_30px_rgba(168,85,247,0.8)]">
-                ADVITIYA'26
-              </h2>
-              <p className="text-gray-400 text-sm md:text-base mt-2">
-                @ADVITIYA IIT Ropar
-              </p>
             </div>
           </motion.div>
 

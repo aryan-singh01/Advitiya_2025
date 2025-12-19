@@ -378,33 +378,8 @@ export default function EventsSection() {
             transition={{ delay: 0.8 }}
             className="flex flex-col items-center justify-center pt-4"
           >
-            <div className="text-cyan-400/60 text-sm mb-2 flex items-center">
-              <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
-              </svg>
-              Scroll to explore
-            </div>
-            <div className="w-24 h-1 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 rounded-full overflow-hidden">
-              <motion.div 
-                className="h-full bg-gradient-to-r from-cyan-400 to-purple-500"
-                initial={{ width: '0%' }}
-                animate={{ width: '100%' }}
-                transition={{ 
-                  duration: 2, 
-                  repeat: Infinity, 
-                  repeatType: 'reverse',
-                  ease: 'easeInOut'
-                }}
-              />
-            </div>
           </motion.div>
         </div>
-      </div>
-
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 text-white/90 text-center text-sm bg-black/30 px-6 py-4 rounded-full backdrop-blur-sm z-50 max-w-2xl">
-        <p className="leading-relaxed">
-          Scanner reveals code overlay • Cards infinitely loop
-        </p>
       </div>
     </section>
   );

@@ -261,17 +261,6 @@ export default function Highlights() {
               ))}
             </div>
           </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={galleryInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 1.2 }}
-            className="text-center mt-16"
-          >
-            <p className="text-cyan-400 text-sm md:text-base font-semibold">
-              Relive the moments that made Advitiya 2025 unforgettable
-            </p>
-          </motion.div>
         </div>
       </div>
     </section>

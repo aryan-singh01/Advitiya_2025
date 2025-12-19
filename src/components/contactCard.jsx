@@ -46,7 +46,7 @@ const contactCards = ({ member, isOC = false }) => {
 
   return (
     <div
-      className={`relative w-54 h-64 bg-black/60 backdrop-blur-lg border border-purple-400/40 rounded-xl overflow-hidden cursor-pointer mx-4 my-6 ${theme.hoverGlow}`}
+      className={`relative w-54 h-80 bg-black/60 backdrop-blur-lg border border-purple-400/40 rounded-xl overflow-hidden cursor-pointer mx-4 my-6 ${theme.hoverGlow}`}
     >
       <div className="flex flex-col items-center justify-center h-full p-6">
         {/* Profile picture */}

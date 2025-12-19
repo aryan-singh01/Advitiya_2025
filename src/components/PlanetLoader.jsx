@@ -176,7 +176,7 @@ export default function PlanetLoader({ onComplete }) {
           planet.angle = planet.startAngle + angleDiff * easeProgress;
         } else if (!isAligning) {
           // Normal orbit before alignment
-          planet.angle += 0.75 * planet.speed;
+          planet.angle += planet.speed;
         }
 
         // Update position
@@ -187,14 +187,14 @@ export default function PlanetLoader({ onComplete }) {
 
       // Update alignment progress with smooth increment
       if (isAligning && alignmentProgress < 1) {
-        alignmentProgress += 0.45 / alignmentDuration;
+        alignmentProgress += 0.7 / alignmentDuration;
 
         // When alignment is complete
         if (alignmentProgress >= 1) {
           alignmentProgress = 1; // Clamp to 1
           setTimeout(() => {
             if (onComplete) onComplete();
-          }, 800);
+          }, 500);
         }
       }
 

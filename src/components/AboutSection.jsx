@@ -198,7 +198,7 @@ export default function AboutSection() {
             transition={{ duration: 0.7, delay: 0.35 }}
             className="flex justify-center"
           >
-            <div className="w-full max-w-4xl">
+            <div className="w-full">
               <div className="relative group">
                 {/* Glowing border effect */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/50 via-purple-500/50 to-pink-500/50 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500" />

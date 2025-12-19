@@ -743,26 +743,6 @@ export default function EventsSection() {
               })}
             </div>
           </div>
-
-          {/* Footer Info */}
-          <div
-            className="w-full flex flex-col items-center text-center animate-fadeIn"
-            style={{ animationDelay: "600ms" }}
-          >
-            <div className="max-w-4xl mx-auto px-4 text-center">
-              <p className="text-cyan-100 text-base sm:text-lg mb-6 mx-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-                Click on any event card to explore detailed information,
-                schedules, and registration links
-              </p>
-
-              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 text-sm text-cyan-200 flex-wrap drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)]">
-                <span>• Interactive details</span>
-                <span>• Real-time registration</span>
-                <span>• Prize breakdown</span>
-                <span>• Venue information</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 

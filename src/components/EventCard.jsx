@@ -285,6 +285,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import { Calendar, Clock, Users, DollarSign, Trophy } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const CloseIcon = () => {
   return (
@@ -319,10 +320,11 @@ const CloseIcon = () => {
   );
 };
 
-export function ExpandableEventCards({ events, onRegisterClick }) {
+export function ExpandableEventCards({ events }) {
   const [active, setActive] = useState(null);
   const id = useId();
   const ref = useRef(null);
+  const router = useRouter()
 
   useEffect(() => {
     function onKeyDown(event) {
@@ -416,9 +418,7 @@ export function ExpandableEventCards({ events, onRegisterClick }) {
                     layoutId={`button-${active.eventName}-${id}`}
                     onClick={(e) => {
                       e.stopPropagation();
-                      if (onRegisterClick) {
-                        onRegisterClick(active);
-                      }
+                      router.push(active.registrationLink)
                     }}
                     disabled={!active.isRegistrationOpen}
                     className="inline-block px-8 py-3 text-sm rounded-full font-bold bg-linear-to-r from-cyan-500 to-blue-500 text-white hover:shadow-lg hover:shadow-cyan-500/40 transition-all duration-200"
@@ -443,18 +443,12 @@ export function ExpandableEventCards({ events, onRegisterClick }) {
                           className="text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]"
                         />
                         <span className="text-sm text-cyan-200">
-                          {new Date(
-                            active.eventDateAndTime
-                          ).toLocaleDateString()}
+                          {active.eventDate}
                         </span>
                       </div>
                       <div className="flex items-center justify-center gap-2">
-                        <Trophy
-                          size={16}
-                          className="text-yellow-400 drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]"
-                        />
                         <span className="text-sm text-cyan-200">
-                          ₹{active.eventFees}
+                          🔴 Free Registration 
                         </span>
                       </div>
                       <div className="flex items-center justify-center gap-2">
@@ -475,10 +469,7 @@ export function ExpandableEventCards({ events, onRegisterClick }) {
                           className="text-purple-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]"
                         />
                         <span className="text-sm text-cyan-200">
-                          {new Date(active.eventDateAndTime).toLocaleTimeString(
-                            [],
-                            { hour: "2-digit", minute: "2-digit" }
-                          )}
+                          {active.eventTime}
                         </span>
                       </div>
                     </div>
@@ -562,10 +553,7 @@ export function ExpandableEventCards({ events, onRegisterClick }) {
                 <div className="w-full mt-3">
                   <div className="grid grid-cols-2 gap-3 w-full mb-2 text-sm">
                     <div className="text-center p-3 rounded bg-black/40 border border-cyan-400/30">
-                      <div className="text-cyan-300 font-semibold drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">
-                        {new Date(event.eventDateAndTime).toLocaleDateString()}
-                      </div>
-                      <div className="text-cyan-100 text-xs">Date</div>
+                      <div className="text-cyan-100 text-xs">Date: {event.eventDate}</div>
                     </div>
                     <div className="text-center p-3 rounded bg-black/40 border border-yellow-400/30">
                       <div className="text-yellow-300 font-semibold drop-shadow-[0_0_8px_rgba(250,204,21,0.8)]">
