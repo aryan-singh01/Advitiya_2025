@@ -1,5 +1,6 @@
 import React from "react";
-import { Facebook, Twitter, Instagram } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa6";
 
 type SocialMedia = {
   name: string;
@@ -9,19 +10,19 @@ type SocialMedia = {
 
 const socialLinks: SocialMedia[] = [
   {
-    name: "Facebook",
-    url: "https://www.facebook.com",
-    icon: <Facebook className="w-6 h-6 text-blue-600" />,
-  },
-  {
-    name: "Twitter",
-    url: "https://www.twitter.com",
-    icon: <Twitter className="w-6 h-6 text-blue-400" />,
+    name: "LinkedIn",
+    url: "https://in.linkedin.com/company/advitiya-iit-ropar",
+    icon: <Linkedin className="w-6 h-6 text-blue-600" />,
   },
   {
     name: "Instagram",
-    url: "https://www.instagram.com",
+    url: "https://www.instagram.com/advitiya_iitrpr/?hl=en",
     icon: <Instagram className="w-6 h-6 text-pink-500" />,
+  },
+  {
+    name: "Whatsapp",
+    url: "https://whatsapp.com/channel/0029Vb6gyHAFsn0iBx9caR0E",
+    icon: <FaWhatsapp className="w-6 h-6 text-green-500" />,
   },
 ];
 

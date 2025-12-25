@@ -4,7 +4,7 @@ import type { NextConfig } from "next";
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['localhost'],
+    domains: ['localhost','drive.google.com'],
     // Or use the newer remotePatterns approach (recommended):
     remotePatterns: [
       {

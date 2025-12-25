@@ -1,5 +1,6 @@
 import React from "react";
 import { Mail, Linkedin } from "lucide-react";
+import Image from "next/image";
 
 const contactCards = ({ member, isOC = false }) => {
   const { name, position, image, linkedin, email } = member;
@@ -53,7 +54,7 @@ const contactCards = ({ member, isOC = false }) => {
         <div
           className={`w-24 h-24 mb-4 overflow-hidden rounded-full border-2 ${theme.border} ${theme.shadow}`}
         >
-          <img src={image} alt={name} className="w-full h-full object-cover" />
+          <Image width={100} height={100} src={image} alt={name} className="w-full h-full object-cover" />
         </div>
 
         {/* Name */}

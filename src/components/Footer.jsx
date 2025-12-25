@@ -153,13 +153,13 @@
 
 import { motion } from "framer-motion";
 import { Mail, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa6";
 
 export default function Footer() {
   const socialLinks = [
     { icon: Instagram, href: "https://www.instagram.com/advitiya_iitrpr/?hl=en", color: "hover:text-pink-400" },
-    { icon: Facebook, href: "#", color: "hover:text-blue-400" },
     { icon: Linkedin, href: "https://www.linkedin.com/company/advitiya-iit-ropar/", color: "hover:text-cyan-400" },
-    { icon: Youtube, href: "#", color: "hover:text-red-400" },
+    {icon: FaWhatsapp, href: "https://whatsapp.com/channel/0029Vb6gyHAFsn0iBx9caR0E", color: "hover:text-green-500"}
   ];
 
   return (

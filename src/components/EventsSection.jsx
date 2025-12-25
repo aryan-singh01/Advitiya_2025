@@ -659,13 +659,16 @@ export default function EventsSection() {
               Events
             </h1>
 
-            <p className="text-lg sm:text-xl lg:text-2xl text-cyan-100 max-w-4xl mx-auto leading-relaxed px-4 text-center drop-shadow-[0_2px_10px_rgba(0,0,0,1)] font-medium">
+            {/* <p className="text-lg sm:text-xl lg:text-2xl text-cyan-100 max-w-4xl mx-auto leading-relaxed px-4 text-center drop-shadow-[0_2px_10px_rgba(0,0,0,1)] font-medium">
               FLAGSHIP EVENTS ACROSS DIVERSE CATEGORIES
+            </p> */}
+            <p className="text-lg sm:text-xl lg:text-2xl text-cyan-100 max-w-4xl mx-auto leading-relaxed px-4 text-center drop-shadow-[0_2px_10px_rgba(0,0,0,1)] font-medium">
+              Coming Soon
             </p>
           </div>
 
           {/* Events Grid */}
-          <div className="w-full px-4 sm:px-6 lg:px-8">
+          {/* <div className="w-full px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 max-w-none items-stretch">
               {eventsData.map((event, index) => {
                 const gradient = getGradientColor(index);
@@ -742,7 +745,7 @@ export default function EventsSection() {
                 );
               })}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
 

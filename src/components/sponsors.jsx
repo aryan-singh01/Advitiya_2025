@@ -18,113 +18,49 @@ import Image from "next/image";
 
 const sponsors = [
   {
-    name: "NexaSoft",
-    sector: "Cloud & AI",
-    icon: Code,
+    name: "Campa Sure",
     color: "from-cyan-500 to-blue-500",
-    description: "Building scalable cloud-native platforms.",
-    src: "https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=1200&h=600&fit=crop&crop=entropy&auto=format",
+    src: "/sponsorship/Campa Sure logo.png",
     ctaText: "Visit Site",
     ctaLink: "#",
-    
-    content: () => (
-      <div className="space-y-4 text-center">
-        <p className="text-neutral-600 dark:text-neutral-400">
-          NexaSoft accelerates digital transformation with secure, serverless stacks and ML ops.
-        </p>
-      </div>
-    ),
   },
   {
-    name: "GreenLeaf Energy",
-    sector: "Renewables",
-    icon: Award,
+    name: "ICICI Bank",
     color: "from-green-500 to-emerald-500",
-    description: "Sustainable solar solutions at scale.",
-    src: "https://images.unsplash.com/photo-1509395176047-4a66953fd231?w=1200&h=600&fit=crop&crop=entropy&auto=format",
+    src: "/sponsorship/ICICI_Bank.png",
     ctaText: "Visit Site",
     ctaLink: "#",
-    
-    content: () => (
-      <div className="space-y-4 text-center">
-        <p className="text-neutral-600 dark:text-neutral-400">
-          Provider of utility-scale solar farms and rooftop microgrids for campuses and SMEs.
-        </p>
-      </div>
-    ),
   },
   {
-    name: "Finova Capital",
-    sector: "Fintech",
-    icon: Briefcase,
-    color: "from-yellow-500 to-orange-500",
-    description: "Smart payments and lending APIs.",
-    src: "https://images.unsplash.com/photo-1556745738-8d76bdb6984b?w=1200&h=600&fit=crop&crop=entropy&auto=format",
+    name: "EduFabrica",
+    color: "from-green-500 to-emerald-500",
+    src: "/sponsorship/Edufabrica.png",
     ctaText: "Visit Site",
     ctaLink: "#",
-    
-    content: () => (
-      <div className="space-y-4 text-center">
-        <p className="text-neutral-600 dark:text-neutral-400">
-          Enabling seamless collections, payouts, and credit scoring with robust compliance.
-        </p>
-      </div>
-    ),
   },
   {
-    name: "PixelForge Studios",
-    sector: "Design & Media",
-    icon: Palette,
-    color: "from-purple-500 to-pink-500",
-    description: "Branding and motion design for startups.",
-    src: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=1200&h=600&fit=crop&crop=entropy&auto=format",
+    name: "Finlatics",
+    color: "from-green-500 to-emerald-500",
+    src: "/sponsorship/finlatics.png",
     ctaText: "Visit Site",
     ctaLink: "#",
-    
-    content: () => (
-      <div className="space-y-4 text-center">
-        <p className="text-neutral-600 dark:text-neutral-400">
-          From visual identities to product videos, PixelForge crafts memorable brand stories.
-        </p>
-      </div>
-    ),
   },
   {
-    name: "SkyLoop Networks",
-    sector: "Networking",
-    icon: Users,
-    color: "from-indigo-500 to-blue-500",
-    description: "High-availability network solutions.",
-    src: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1200&h=600&fit=crop&crop=entropy&auto=format",
+    name: "Bsates",
+    color: "from-green-500 to-emerald-500",
+    src: "/sponsorship/bsates.jpg",
     ctaText: "Visit Site",
     ctaLink: "#",
-    
-    content: () => (
-      <div className="space-y-4 text-center">
-        <p className="text-neutral-600 dark:text-neutral-400">
-          Enterprise Wi‑Fi, SD‑WAN, and edge security with 24/7 managed services.
-        </p>
-      </div>
-    ),
   },
   {
-    name: "MediSync Health",
-    sector: "HealthTech",
-    icon: Trophy,
-    color: "from-red-500 to-rose-500",
-    description: "Connected devices and telemedicine.",
-    src: "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=1200&h=600&fit=crop&crop=entropy&auto=format",
+    name: "JPDHub",
+    color: "from-green-500 to-emerald-500",
+    src: "/sponsorship/jpdhub_logo.jpg",
     ctaText: "Visit Site",
     ctaLink: "#",
-    
-    content: () => (
-      <div className="space-y-4 text-center">
-        <p className="text-neutral-600 dark:text-neutral-400">
-          Remote patient monitoring and AI triage helping hospitals scale care access.
-        </p>
-      </div>
-    ),
   },
+
+
 ];
 
 const CloseIcon = () => (
@@ -309,8 +245,8 @@ export default function EventsSection() {
             {/* Gradient overlays for fade effect on sides */}
             <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-gray-900 to-transparent z-10 pointer-events-none"></div>
             <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-gray-900 to-transparent z-10 pointer-events-none"></div>
-            
-            <div className="relative h-[400px] overflow-hidden">
+
+            <div className="relative h-[300px] overflow-hidden">
               <motion.div
                 ref={containerRef}
                 className="absolute top-0 left-0 flex space-x-8 h-full"
@@ -327,7 +263,7 @@ export default function EventsSection() {
                   <motion.div
                     key={`${sponsor.name}-${index}`}
                     className="w-[320px] sm:w-[360px] flex-shrink-0 group"
-                    whileHover={{ 
+                    whileHover={{
                       y: -10,
                       transition: { duration: 0.3 }
                     }}
@@ -351,17 +287,10 @@ export default function EventsSection() {
 
                       <div className="flex-1 flex flex-col items-center text-center p-4">
                         <div className="flex items-center justify-center mb-3">
-                          <div className={`p-2.5 rounded-full bg-gradient-to-r ${sponsor.color} mr-3 shadow-[0_0_20px_rgba(168,85,247,0.6)] transform group-hover:scale-110 transition-transform duration-300`}>
-                            <sponsor.icon size={20} className="text-white" />
-                          </div>
                           <h3 className="font-bold text-cyan-100 text-xl drop-shadow-[0_0_10px_rgba(34,211,238,0.8)] group-hover:text-white transition-colors">
                             {sponsor.name}
                           </h3>
                         </div>
-                        
-                        <p className="text-cyan-100 text-sm px-4">
-                          {sponsor.description}
-                        </p>
 
                       </div>
                     </div>
@@ -372,7 +301,7 @@ export default function EventsSection() {
           </div>
 
           {/* Scroll Indicator */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
