@@ -11,7 +11,21 @@ export default function Teaser() {
   const themeInView = useInView(themeRef, { once: true, amount: 0.12 });
 
   const themeContent =
-    "This year, Advitiya unveils The Crucible of Tomorrow, an extraordinary narrative of innovation and ambition where the brightest minds converge to redefine the future. In a spectacular reveal, four legendary factions emerge—Voltaris, masters of code and machine; Aeris, pioneers of engineering and flight; Terranova, architects of design and innovation; and Infernix, strategists of gaming and finance. Each faction represents a cornerstone of human ingenuity, championing disciplines that shape the world. As these forces clash in an epic contest, their collaboration and rivalry will determine the next chapter of technological evolution. This is not just a competition—this is the crucible where brilliance is forged, and the future is created.";
+    `The horizon was never the limit; it was just the beginning. This year, Advitiya embarks on the theme “ A Space Odyssey” , a mission to navigate the vast landscape of human potential.
+
+This isn't just a journey; it’s a test of technical endurance. It is the distance between a raw concept and a world-shaping execution. In this odyssey, every line of code is fuel, and every mechanical design is a vessel built to withstand the pressure of the impossible.
+
+We are moving beyond the expected to explore the deep layers of technology:
+
+§ The Digital Void: Where logic and algorithms form the backbone of new worlds.
+
+§ The Engines of Discovery: Where hardware and robotics push the limits of physical reality.
+
+§ The Strategic Orbit: Where the laws of finance and the mechanics of gaming redefine human interaction.
+
+The rules of gravity no longer apply;only the laws of innovation remain.
+
+Prepare for liftoff. The galaxy is waiting.`
 
   return (
     <section className="relative min-h-screen w-full flex flex-col justify-center md:py-24 overflow-hidden">
@@ -153,6 +167,14 @@ export default function Teaser() {
                   <div className="absolute top-0 right-0 w-20 h-20 border-t-2 border-r-2 border-purple-400/50 rounded-tr-2xl" />
                   <div className="absolute bottom-0 left-0 w-20 h-20 border-b-2 border-l-2 border-purple-400/50 rounded-bl-2xl" />
                   <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-pink-400/50 rounded-br-2xl" />
+                  <motion.h3
+                    className="text-2xl md:text-3xl lg:text-4xl font-bold text-cyan-200 mb-6 md:mb-8 text-center"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 } }
+                    transition={{ duration: 0.6, delay: 0.5 }}
+                  >
+                    A Space Odyssey
+                  </motion.h3>
 
                   <motion.p
                     initial={{ opacity: 0, y: 10 }}

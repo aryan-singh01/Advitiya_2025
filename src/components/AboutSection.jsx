@@ -145,7 +145,9 @@ export default function AboutSection() {
   const inView = useInView(ref, { once: true, amount: 0.1 });
 
   const content =
-    'Advitiya 2026, IIT Ropar\'s annual tech fest, themed "The Crucible of Tomorrow," is set to be a landmark event showcasing the best of technological innovation and intellectual prowess. The fest will feature a wide range of competitions, including coding marathons, AI challenges, and cybersecurity battles; robotics showcases and aerospace contests; creative design and mathematical problem-solving events; as well as gaming and financial strategy tournaments. Complementing these high-energy contests are captivating talks and panel discussions by renowned technologists, industry leaders, and entrepreneurs, offering fresh insights into cutting-edge advancements and the future of technology. Advitiya 2026 is a stage where talent, ideas, and collaboration converge to shape a brighter tomorrow.';
+    `Advitiya 2026, IIT Ropar's annual technical fest, is back to set the benchmark for technological innovation and intellectual grit. This year, the fest is themed "A Space Odyssey," transforming our campus into a launchpad for the next generation of engineers and creators. We bring together a massive lineup of high-stakes competitions, including app development battles, AI and algorithm challenges, fin-tech simulations and cyber-security hunts. Beyond the screen, expect to see the future in motion with robotics showcases, aerospace contests, and creative design modules. Whether it’s solving complex mathematical problems or dominating in gaming and finance, Advitiya is where the brightest minds come to push past the ordinary. If you’re obsessed with the "how" and the "why," you belong here.
+
+This is ADVITIYA 2026, where deep-tech meets raw creativity.`;
 
   return (
     <section

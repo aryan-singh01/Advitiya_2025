@@ -107,7 +107,7 @@ export default function Highlights() {
     },
     {
       url: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600",
-      alt: "Coding Competition",
+      alt: "Robotics Competition ",
       span: "col-span-1 row-span-1",
     },
     {
@@ -127,7 +127,7 @@ export default function Highlights() {
     },
     {
       url: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600",
-      alt: "Robotics Competition",
+      alt: "Coding Competition",
       span: "col-span-2 row-span-1",
     },
     {
@@ -213,7 +213,7 @@ export default function Highlights() {
             className="text-center mb-16"
           >
             <p className="text-gray-300 text-base md:text-lg max-w-4xl mx-auto leading-relaxed">
-              Advitiya 2024 showcased thrilling competitions including Drone
+              Advitiya 2025 showcased thrilling competitions including Drone
               Racing, RC Car Racing, and Hackathons. The fest featured
               cutting-edge workshops on AI, ML, and Rocket Building, with
               insights from industry professionals and the Inter-School Conclave

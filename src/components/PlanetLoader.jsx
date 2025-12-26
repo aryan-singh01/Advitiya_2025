@@ -70,25 +70,30 @@ export default function PlanetLoader({ onComplete }) {
     }
 
     // Strong sun light
-    const sunLight = new THREE.PointLight(0xffa500, 3, 300);
+    const sunLight = new THREE.PointLight(0xffcc66, 4, 500);
     sunLight.position.set(0, 0, 0);
     scene.add(sunLight);
 
     // Ambient light for visibility
-    const ambientLight = new THREE.AmbientLight(0x404040, 1);
+    const ambientLight = new THREE.AmbientLight(0x222233, 0.6);
     scene.add(ambientLight);
+    const rimLight = new THREE.DirectionalLight(0xffffff, 0.6);
+    rimLight.position.set(-100, 50, -100);
+    scene.add(rimLight);
 
     // Create planets with textures and better materials
     const planets = [
-      { distance: 12, size: 0.8, color: 0xa0522d, speed: 0.047, name: "Mercury" },
-      { distance: 18, size: 1.8, color: 0xffd700, speed: 0.035, name: "Venus" },
-      { distance: 25, size: 2, color: 0x4169e1, speed: 0.029, name: "Earth" },
-      { distance: 32, size: 1.2, color: 0xff4500, speed: 0.024, name: "Mars" },
-      { distance: 50, size: 4.5, color: 0xdaa520, speed: 0.013, name: "Jupiter" },
-      { distance: 70, size: 4, color: 0xf4a460, speed: 0.009, name: "Saturn" },
-      { distance: 90, size: 3, color: 0x4fc3f7, speed: 0.006, name: "Uranus" },
-      { distance: 110, size: 2.8, color: 0x1e90ff, speed: 0.005, name: "Neptune" },
+      { distance: 10, size: 1.2, color: 0xb87333, speed: 0.06, name: "Mercury" },
+      { distance: 16, size: 2.2, color: 0xeedc82, speed: 0.048, name: "Venus" },
+      { distance: 22, size: 2.4, color: 0x3a6ee8, speed: 0.04, name: "Earth" },
+      { distance: 28, size: 1.9, color: 0xc1440e, speed: 0.034, name: "Mars" },
+
+      { distance: 40, size: 5.5, color: 0xd8ca9d, speed: 0.022, name: "Jupiter" },
+      { distance: 55, size: 4.8, color: 0xe3c16f, speed: 0.018, name: "Saturn" },
+      { distance: 70, size: 3.6, color: 0x7ad7f0, speed: 0.014, name: "Uranus" },
+      { distance: 85, size: 3.4, color: 0x4166f5, speed: 0.012, name: "Neptune" },
     ];
+
 
     const planetMeshes = planets.map((planet, index) => {
       // Create planet with better material
@@ -187,7 +192,7 @@ export default function PlanetLoader({ onComplete }) {
 
       // Update alignment progress with smooth increment
       if (isAligning && alignmentProgress < 1) {
-        alignmentProgress += 0.7 / alignmentDuration;
+        alignmentProgress += 0.6 / alignmentDuration;
 
         // When alignment is complete
         if (alignmentProgress >= 1) {
