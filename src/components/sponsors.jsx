@@ -141,88 +141,8 @@ export default function EventsSection() {
       <div className="flex flex-col items-center justify-center w-full px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-7xl mx-auto space-y-12 sm:space-y-16">
           {/* Modal overlay */}
-          <AnimatePresence>
-            {active && typeof active === "object" && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black/20 h-full w-full z-10"
-              />
-            )}
-          </AnimatePresence>
 
           {/* Modal */}
-          <AnimatePresence>
-            {active && typeof active === "object" ? (
-              <div className="fixed inset-0 grid place-items-center z-[100] p-4">
-                <motion.button
-                  key={`button-${active.name}-${id}`}
-                  layout
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0, transition: { duration: 0.05 } }}
-                  className="flex absolute top-6 right-6 lg:hidden items-center justify-center bg-white rounded-full h-8 w-8 z-10"
-                  onClick={() => setActive(null)}
-                >
-                  <CloseIcon />
-                </motion.button>
-
-                <motion.div
-                  layoutId={`card-${active.name}-${id}`}
-                  ref={ref}
-                  className="w-full max-w-[700px] max-h-[90vh] flex flex-col bg-white dark:bg-neutral-900 rounded-3xl overflow-hidden m-4 shadow-lg"
-                >
-                  <motion.div
-                    layoutId={`image-${active.name}-${id}`}
-                    className="flex-none"
-                  >
-                    <Image
-                      priority
-                      width={700}
-                      height={220}
-                      src={active.src}
-                      alt={active.name}
-                      className="w-full h-44 object-cover"
-                    />
-                  </motion.div>
-
-                  <div className="p-6 flex-1 flex flex-col min-h-0">
-                    <div className="text-center mb-4">
-                      <motion.h3
-                        layoutId={`title-${active.name}-${id}`}
-                        className="font-bold text-neutral-700 dark:text-neutral-200 text-2xl mb-2"
-                      >
-                        {active.name}
-                      </motion.h3>
-                    </div>
-
-                    <div className="text-center mb-4 px-4">
-                      <motion.a
-                        layoutId={`button-${active.name}-${id}`}
-                        href={active.ctaLink}
-                        className={`inline-block px-8 py-3 text-sm rounded-full font-bold bg-gradient-to-r ${active.color} text-white hover:shadow-lg transition-all`}
-                      >
-                        {active.ctaText}
-                      </motion.a>
-                    </div>
-
-                    <motion.div
-                      layout
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      className="overflow-auto flex-1 min-h-0 text-neutral-600 dark:text-neutral-400 space-y-4"
-                    >
-                      {typeof active.content === "function"
-                        ? active.content()
-                        : active.content}
-                    </motion.div>
-                  </div>
-                </motion.div>
-              </div>
-            ) : null}
-          </AnimatePresence>
 
           {/* Header */}
           <motion.div

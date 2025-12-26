@@ -28,7 +28,7 @@ const socialLinks: SocialMedia[] = [
 
 const SocialSidebar: React.FC = () => {
   return (
-    <div className="fixed top-1/2 right-0 transform -translate-y-1/2 flex flex-col gap-4 p-2 bg-background border-l z-50">
+    <div className="fixed top-1/2 right-0 transform -translate-y-1/2 flex flex-col gap-4 p-2 bg-black border-l z-50">
       {socialLinks.map((link) => (
         <a
           key={link.name}

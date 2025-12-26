@@ -25,7 +25,21 @@ export const headsData = [
     linkedin: "https://www.linkedin.com/in/vibhansh-jain-32328a27b/",
     email: "2023ceb1053@iitrpr.ac.in",
   },
-  
+  {
+    name: "Omm Shree",
+    position: "Finance Head",
+    image: "",
+    linkedin: "",
+    email: "",
+  },
+  {
+    name: "Raj Sureka",
+    position: "Finance Head",
+    image: "",
+    linkedin: "",
+    email: "",
+  },
+
   {
     name: "Aarya Choudha ",
     position: "Sponsorship Head",
@@ -36,7 +50,7 @@ export const headsData = [
   {
     name: "Dev Jain",
     position: "Sponsorship Head",
-   image: "https://drive.google.com/uc?export=view&id=1zmgyTeBioIeWwp08zpFabBRc01jmCo6n",
+    image: "https://drive.google.com/uc?export=view&id=1zmgyTeBioIeWwp08zpFabBRc01jmCo6n",
     linkedin: "https://www.linkedin.com/in/dev-jain-605382282/",
     email: "2023ceb1028@iitrpr.ac.in",
   },
@@ -55,12 +69,27 @@ export const headsData = [
     email: "2023chb1059@iitrpr.ac.in",
   },
 
+
   {
     name: "Anuj Kumar ",
     position: "Security Head",
     image: "https://drive.google.com/uc?export=view&id=1OoRmbAlMrivEJv2zzi2S9c-gNXtPgGhb",
     linkedin: "https://www.linkedin.com/in/anuj-kumar-783352293?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     email: "2023eeb1187@iitrpr.ac.in",
+  },
+  {
+    name: "Shivam Upadhyay",
+    position: "Security Head",
+    image: "",
+    linkedin: " ",
+    email: "",
+  },
+  {
+    name: "Mann sharma",
+    position: "Security Head",
+    image: "",
+    linkedin: "",
+    email: "",
   },
 
   {
@@ -70,14 +99,22 @@ export const headsData = [
     linkedin: "https://www.linkedin.com/in/shubham-99b82828b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
     email: "2023meb1380@iitrpr.ac.in",
   },
-
   {
-    name: "Shreshth Shukla",
-    position: "Hospitality Head",
-    image: "https://drive.google.com/uc?export=view&id=1njPRUZXmfkwIE_wzeHbYq55dk1oxnbqQ",
-    linkedin: "https://www.linkedin.com/in/shreshth-shukla-9446a328b/",
-    email: "2023meb1379@iitrpr.ac.in",
+    name: "Kunal Dhiman",
+    position: "Pronites Head",
+    image: "",
+    linkedin: "",
+    email: "",
   },
+  {
+    name: "Nachiket Patil",
+    position: "Pronites Head",
+    image: "",
+    linkedin: "",
+    email: "",
+  },
+
+
   {
     name: "Harsh Yadav",
     position: "Hospitality Head",
@@ -86,12 +123,20 @@ export const headsData = [
     email: "2023aib1007@iitrpr.ac.in",
   },
   {
+    name: "Shashank Shekhar",
+    position: "Hospitality Head",
+    image: "",
+    linkedin: "",
+    email: "",
+  },
+  {
     name: "TANISHQ",
     position: "Hospitality Head",
     image: "https://drive.google.com/uc?export=view&id=1VaGA_dx0y343DLU5PvIkpfAG6aBKauzo",
     linkedin: "https://www.linkedin.com/in/tanishq-399812372?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
     email: "2023ceb1051@iitrpr.ac.in",
   },
+
 
   {
     name: "Lakshay",
@@ -200,11 +245,11 @@ export const headsData = [
     email: "2023eeb1176@iitrpr.ac.in",
   },
   {
-    name: "T Adil ",
+    name: "Shreshth Shukla",
     position: "Event Management Head",
-    image: "https://drive.google.com/uc?export=view&id=1eFrEVa7tsZZFVO-1355KXdWT1gFOesL6",
-    linkedin: "https://www.linkedin.com/in/t-adil-701727286?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
-    email: "2023meb1389@iitrpr.ac.in",
+    image: "https://drive.google.com/uc?export=view&id=1njPRUZXmfkwIE_wzeHbYq55dk1oxnbqQ",
+    linkedin: "https://www.linkedin.com/in/shreshth-shukla-9446a328b/",
+    email: "2023meb1379@iitrpr.ac.in",
   },
   {
     name: "Animesh Anand",
@@ -213,6 +258,31 @@ export const headsData = [
     linkedin: "https://www.linkedin.com/in/animesh-anand-iitrpr?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
     email: "2023ceb1024@iitrpr.ac.in",
   },
+  {
+    name: "Ayush Singh",
+    position: "Event Management Head",
+    image: "",
+    linkedin: "",
+    email: "",
+  },
+
+
+  {
+    name: "Diya Seal",
+    position: "Workshops and Talks Head",
+    image: "",
+    linkedin: "",
+    email: "",
+  },
+  {
+    name: "Dev Agrawal",
+    position: "Workshops and Talks Head",
+    image: "",
+    linkedin: "",
+    email: "",
+  },
+
+
 
   {
     name: "Surendra Sahu ",
@@ -244,6 +314,13 @@ export const headsData = [
     image: "https://drive.google.com/uc?export=view&id=1PUwMMF5BdZ2P8LwCJ2HesGHXMdUz3R2J",
     linkedin: "https://www.linkedin.com/in/chaitanya-kalme-1a610a346/",
     email: "2023csb1112@iitrpr.ac.in",
+  },
+    {
+    name: "Aryan Singh ",
+    position: "Web Development Head",
+    image: "",
+    linkedin: "",
+    email: "",
   },
 ];
 

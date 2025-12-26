@@ -84,7 +84,7 @@ export default function Teaser() {
                   >
                     <iframe
                       className="absolute top-0 left-0 w-full h-full rounded-xl"
-                      src="https://www.youtube.com/embed/C7J50AguVK8?si=Km9qCvcwGy_TYbrw"
+                      src="https://www.youtube.com/embed/lZNSsLk-y6g?si=CrAF78pk5tISSuTU"
                       title="YouTube video player"
                       frameBorder="0"
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

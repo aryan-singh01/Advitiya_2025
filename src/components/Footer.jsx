@@ -178,7 +178,7 @@ export default function Footer() {
             className="flex flex-col space-y-4"
           >
             <h3 className="text-xl md:text-2xl font-bold text-cyan-300 mb-1">
-              Campus Ambassador Program
+              Contact Us
             </h3>
             <p className="text-gray-300 text-sm md:text-base mb-2">
               For any queries contact us at:
