@@ -91,6 +91,7 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import Image from "next/image";
 
 export default function Highlights() {
   const ref = useRef(null);
@@ -101,62 +102,62 @@ export default function Highlights() {
 
   const galleryImages = [
     {
-      url: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800",
-      alt: "Drone Racing Competition",
+      url: "/highlights/Image1.jpg",
+      alt: "",
       span: "col-span-2 row-span-2",
     },
     {
-      url: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600",
-      alt: "Robotics Competition ",
+      url: "/highlights/Image2.jpg",
+      alt: "",
       span: "col-span-1 row-span-1",
     },
     {
-      url: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600",
-      alt: "Tech Workshop",
+      url: "/highlights/Image3.jpg",
+      alt: "",
       span: "col-span-1 row-span-1",
     },
     {
-      url: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600",
-      alt: "Panel Discussion",
+      url: "/highlights/Image4.jpg",
+      alt: "",
       span: "col-span-1 row-span-2",
     },
     {
-      url: "https://images.unsplash.com/photo-1561489396-888724a1543d?w=600",
-      alt: "RC Car Racing",
+      url: "/highlights/Image5.JPG",
+      alt: "",
       span: "col-span-1 row-span-1",
     },
     {
-      url: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600",
-      alt: "Coding Competition",
+      url: "/highlights/Image6.JPG",
+      alt: "",
       span: "col-span-2 row-span-1",
     },
     {
-      url: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600",
-      alt: "Hackathon Event",
+      url: "/highlights/Image7.JPG",
+      alt: "",
       span: "col-span-1 row-span-1",
     },
     {
-      url: "https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=600",
-      alt: "AI Workshop",
+      url: "/highlights/Image8.jpg",
+      alt: "",
       span: "col-span-1 row-span-1",
     },
     {
-      url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600",
-      alt: "Participants",
+      url: "/highlights/Image9.jpg",
+      alt: "",
       span: "col-span-2 row-span-1",
     },
     {
-      url: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600",
+      url: "/highlights/Image10.jpg",
       alt: "Team Collaboration",
       span: "col-span-1 row-span-2",
     },
     {
-      url: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=600",
-      alt: "Innovation Showcase",
+      url: "/highlights/Image11.JPG",
+      alt: "",
       span: "col-span-2 row-span-1", // Increased size similar to Participants
     },
     {
-      url: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600",
+      url: "/highlights/Image12.jpg",
       alt: "Opening Ceremony",
       span: "col-span-1 row-span-1",
     },
@@ -244,10 +245,12 @@ export default function Highlights() {
                   <div className="absolute -inset-0.5 bg-white rounded-xl opacity-60 group-hover:opacity-90 blur-sm transition-opacity duration-300" />
 
                   <div className="relative w-full h-full overflow-hidden rounded-xl border border-white/90 bg-black/20">
-                    <img
+                    <Image
                       src={image.url}
                       alt={image.alt}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      width={100}
+                      height={100}
                     />
 
                     {/* Overlay */}
